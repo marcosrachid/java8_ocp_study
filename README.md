@@ -2,6 +2,28 @@
 
 Tips for OCP exam
 
+## Java Class Design
+
+## Advanced Java Class Design
+
+## Generics and Collections
+
+## Lambda Built-in Functional Interfaces
+
+## Exceptions and Assertions
+
+## Use Java SE 8 Date/Time API
+
+## Java I/O Fundamentals
+
+## Java File I/O (NIO.2)
+
+## Java Concurrency
+
+## Building Database Applications with JDBC
+
+## Localization
+
 
 Source  | Data
 ------------- | -------------
