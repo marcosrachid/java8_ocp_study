@@ -7,6 +7,7 @@ Tips for OCP exam
 Access modifiers: public, protected, private and default(package-private):
 
 Can access  | private  | default(package-private)  | protected  | public
+------------- | ------------- | ------------- | ------------- | -------------
 Member in the same class  | Y  | Y  | Y  | Y
 Member in another class in the same package  | N  | Y  | Y  | Y
 Member in a superclass in a different package  | N  | N  | Y  | Y
