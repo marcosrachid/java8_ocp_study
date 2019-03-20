@@ -40,6 +40,34 @@ static modifier makes a variable shared between every instance of a class at cla
 
 final modifier prevents a variable from changing and a method from being overriden.
 
+"import" key word to import usable class and "import static" to import static methods from classes.
+
+"instanceof" key word is used to find if an object is of a specific type or child of a specific type.
+
+virtual methods are methods from interfaces or abstract classes that can use the implementation of its sons without the need of specifying the concrete class.
+
+@Override annotation force a method to be and overridden method, otherwise will it will not compile.
+
+"toString()" a native method from Object class that every class has in its structure, it is called when trying to cast an object as String or print the object on console. It can be overriden in the class and return a custom string format for the class.
+
+"equals()" is the substitute for "==" on objects, it returns a boolean based on the implementation of equals to know if two objects are alike on the object context.
+
+"equals()" constract:
+
+* It is reflexive: for any non-null reference value x, x.equals(x) should return true;
+* It is symmetric: for any non=null reference values x and y, x.equals(y) should return true if and only if y.equals(x) is true;
+* It is transitive: for any non-null reference x, y and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) should return true;
+* It is consistent: for any non-null reference values x and y, multiple invocations of x.equals(y) consistently return true or consistently return false, provided no information used in equals comparisons on the objects is modified;
+* For any non-null reference value x, x.equals(null) should return false.
+
+"hashCode()" is a number that puts instances of a class into finite number of categories.
+
+"hashCode()" contract:
+
+* Within the same program, the result of hashCode() must not change. This means that you shouldn't include variables that change in figuring out the hash code.
+* If "equals()" returns true when called with two objects, calling hashCode() on each of those objects must return the same result.
+* If "equals()" returns false when called with two objects, calling hashCode() on each of those objects does not have to return a different result.
+
 ## Advanced Java Class Design
 
 ## Generics and Collections
