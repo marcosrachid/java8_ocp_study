@@ -74,14 +74,89 @@ enum is acceptable on switch, but case options must always be only from enum typ
 
 enum accepts abstract methods, but it must be implemented in every enum type.
 
+effectively final are local variables that althought they are not stated with final modifier, it does not change its state throught execution.
+
 nested class is a class that is defined within another class.
+
+compilation generates a class file on format Outer$Inner.class.
+
+private interfaces are legal as nested inner.
 
 nested class types:
 
-* "inner class" is a class defined at the same leel as instance ariables and is not static;
-* "local inner class" is a class defined within a method;
-* "anonymous inner class" is a special case of a local inner class that does not hae a name;
-* "static nested class" is a static class defined at the same level as static variables.
+* "inner class" is a class defined at the same leel as instance ariables and is not static:
+	* Can be declared as public, priate, protected or default;
+	* Can extend any class and implement interfaces;
+	* Can be abstract or final;
+	* Cannot declare static fields or methods;
+	* Can access members of the outer class including private members.
+	
+```
+public class A {
+	private interface Example {
+		public void ok();
+	}
+	private int x = 10;
+	class B {
+		private int x = 20;
+		class C {
+			private int x = 30;
+			public void allX() {
+				System.out.println(x); //30
+				System.out.println(this.x); //30
+				System.out.println(B.this.x); //20
+				System.out.println(A.this.x); //10
+			}
+		}
+	}
+	public static void main(String[] args) {
+		A a = new A();
+		A.B b = a.new B();
+		A.B.C c = b.new C();
+		c.allX();
+	}
+}
+```
+	
+* "local inner class" is a class defined within a method:
+	* They do not have an access specifier;
+	* They cannot be declared static and cannot declare static fields or methods;
+	* They have access to all fields and methods of the enclosing class;
+	* They do not have access to local variables of a method unless those variables are final or effectively final;
+
+* "anonymous inner class" is a special case of a local inner class(or interface) that does not have a name:
+
+```
+	public class A {
+		private interface B {
+			void whatever();
+		}
+		public void exec() {
+			B b = new B() {
+				public void whatever() {
+					System.out.println("whatever");
+				}
+			};
+		}
+	}
+```
+
+* "static nested class" is a static class defined at the same level as static variables:
+	* The nesting creates a namespace because the enclosing class name must be used to refer to it;
+	* It can be made private or use one of the other access modifiers to encapsulate it;
+	* The enclosing class can refer to the fields and methods of the static nested class.
+	
+```
+	public class Enclosing {
+		static class Nested {
+			private int price = 6;
+		}
+		public static void main(String[] args) {
+			Nested nested = new Nested();
+			System.out.println(nested.price);
+		}
+	}
+```
 
 ## Generics and Collections
 
