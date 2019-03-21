@@ -70,6 +70,19 @@ virtual methods are methods from interfaces or abstract classes that can use the
 
 ## Advanced Java Class Design
 
+enum is acceptable on switch, but case options must always be only from enum type. Notice that an int is not an enum type.
+
+enum accepts abstract methods, but it must be implemented in every enum type.
+
+nested class is a class that is defined within another class.
+
+nested class types:
+
+* "inner class" is a class defined at the same leel as instance ariables and is not static;
+* "local inner class" is a class defined within a method;
+* "anonymous inner class" is a special case of a local inner class that does not hae a name;
+* "static nested class" is a static class defined at the same level as static variables.
+
 ## Generics and Collections
 
 ## Lambda Built-in Functional Interfaces
