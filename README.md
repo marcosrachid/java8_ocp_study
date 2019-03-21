@@ -68,6 +68,34 @@ virtual methods are methods from interfaces or abstract classes that can use the
 * If "equals()" returns true when called with two objects, calling hashCode() on each of those objects must return the same result.
 * If "equals()" returns false when called with two objects, calling hashCode() on each of those objects does not have to return a different result.
 
+polymorphism is the ability of a single interface to support multiple underlying forms. Ex:
+```
+public interface Animal { void roar(); }
+
+public class Dog implements Animal {
+	public void roar() {
+		System.out.println("barf!");
+	}
+}
+
+public class Cat implements Animal {
+	public void roar() {
+		System.out.println("meow!");
+	}
+}
+
+public class Nature {
+	public void checkRoar(Animal animal) {
+		animal.roar();
+	}
+	public static void main(String[] args) {
+		Nature nature = new Nature();
+		nature.checkRoar(new Dog()); // barf!
+		nature.checkRoar(new Cat()); // meow!
+	}
+}
+```
+
 ## Advanced Java Class Design
 
 enum is acceptable on switch, but case options must always be only from enum type. Notice that an int is not an enum type.
