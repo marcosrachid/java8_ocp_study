@@ -68,6 +68,8 @@ virtual methods are methods from interfaces or abstract classes that can use the
 * If "equals()" returns true when called with two objects, calling hashCode() on each of those objects must return the same result.
 * If "equals()" returns false when called with two objects, calling hashCode() on each of those objects does not have to return a different result.
 
+encapsulation is the idea of combining fields and methods in a class such that the methods operate on the data, as opposed to the users of the class accessing the fields directly. In Java, it is commonly implementated with priate instance members that hae public methods to retriee or modify data, commonly referred to as getters and setters, respectively.
+
 polymorphism is the ability of a single interface to support multiple underlying forms. Ex:
 ```
 public interface Animal { void roar(); }
