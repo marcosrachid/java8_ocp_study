@@ -207,9 +207,9 @@ public class A {
 
 Generics allow you to write and use parameterized types, for example you can specify that you want a ArrayList of String objects. ex:
 ```
-	public class A<T> {
-		T obj;
-	}
+public class A<T> {
+	T obj;
+}
 ```
 
 It's possible to use generic to a specific method. ex:
