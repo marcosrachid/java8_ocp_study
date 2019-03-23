@@ -205,7 +205,35 @@ public class A {
 
 ## Generics and Collections
 
+Generics allow you to write and use parameterized types, for example you can specify that you want a ArrayList of String objects. ex:
+```
+	public class A<T> {
+		T obj;
+	}
+```
 
+It's possible to use generic to a specific method. ex:
+```
+...
+	public static <T> void call(T t) {}
+...
+```
+calling:
+```
+...
+	A.<String>call("Something");
+...
+```
+
+Bounds are useful to specify a generic type as a restricted type throught a wildcard position.
+
+Bounds are only used on declarations.
+
+Type of bound  | Syntax  | Example
+------------- | ------------- | -------------
+Unbounded wildcard  | ?  | List<?> l = new ArrayList<String>();
+Wildcard with an upper bound  | ? extends type  | List<? extends Exception> l = new ArrayList<RuntimeException>();
+Wildcard with lower bound  | ? super type  | List<? super Exception> l = new ArrayList<Object>();
 
 ## Lambda Built-in Functional Interfaces
 
