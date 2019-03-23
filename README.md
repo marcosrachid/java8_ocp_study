@@ -106,6 +106,13 @@ public class Nature {
 
 lazy instantiation of singleton, means that the instance of singleton will only be created when "getInstance()" or the instance return method defined is called for the first time.
 
+Immutable objects are read-only objects that the state does not change after they are created:
+	* Use constructor to set all properties of the object;
+	* Mark all of the instance variable private and final;
+	* Don't define any setter methods;
+	* Don't allow referenced mutable objects to be modified or accessed directly;
+	* Prevent methods from being overriden.
+
 ## Advanced Java Class Design
 
 enum is acceptable on switch, but case options must always be only from enum type. Notice that an int is not an enum type.
@@ -197,6 +204,8 @@ public class A {
 ```
 
 ## Generics and Collections
+
+
 
 ## Lambda Built-in Functional Interfaces
 
