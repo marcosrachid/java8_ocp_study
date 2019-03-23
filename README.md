@@ -235,6 +235,38 @@ Unbounded wildcard  | ?  | List<?> l = new ArrayList<String>();
 Wildcard with an upper bound  | ? extends type  | List<? extends Exception> l = new ArrayList<RuntimeException>();
 Wildcard with lower bound  | ? super type  | List<? super Exception> l = new ArrayList<Object>();
 
+Collection interface has three main sub-interfaces: List, Set and Queue.
+
+LinkedList implements both List and Queue.
+
+ArrayDeque methods:
+
+Method  | Description  | for queue  | For stack
+------------- | ------------- | ------------- | -------------
+boolean add(E e) | Adds an element to the back of the queue and returns true or throws exception | Y | N
+E element() | Returns next element or throws an exception if empty queue | Y | N
+boolean offer(E e) | Adds an element to the back of the queue and returns wherer successful | Y | N
+E remove() | Removes and returns next element or throws an exception if empty queue | Y | N
+void push(E e) | Adds an element to the front of the queue | Y | Y
+E poll() | Removes and returns next element or returns null if empty queue | Y | N
+E peek() | Returns next element or returns null if empty queue | Y | Y
+E pop() | Removes and returns next element or throws an exception if empty queue | N | Y
+
+Collection and Map Classes attributes:
+
+Type  | Framework Interface | Sorted? | Calls hashCode()? | Calls compareTo()?
+------------- | ------------- | ------------- | ------------- | -------------
+ArrayList | List | N | N | N
+ArrayDeque | Queue | N | N | N
+HashMap | Map | N | Y | N
+HashSet | Set | N | Y | N
+Hashtable | Map | N | Y | N
+LinkedList | List, Queue | N | N | N
+Stack | List | N | N | N
+TreeMap | List | Y | N | Y
+TreeSet | Set | Y | N | Y
+Vector | List | N | N | N
+
 ## Lambda Built-in Functional Interfaces
 
 ## Exceptions and Assertions
