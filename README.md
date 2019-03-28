@@ -285,6 +285,7 @@ Methods from collection that uses lambda:
 ## Lambda Built-in Functional Interfaces
 
 Built-in Functional Interfaces
+
 Functional Interfaces | Parameters | Return Type | Single Abstract Method
 ------------- | ------------- | ------------- | -------------
 Supplier<T> | 0 | T | get
