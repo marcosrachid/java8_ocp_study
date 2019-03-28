@@ -282,9 +282,6 @@ Methods from collection that uses lambda:
 * replaceAll(UnaryOperator<E> o)
 * forEach(Consumer<E> c)
 
-Methods from map that uses lambda:
-* 
-
 ## Lambda Built-in Functional Interfaces
 
 ## Exceptions and Assertions
