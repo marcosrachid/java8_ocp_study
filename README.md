@@ -267,6 +267,16 @@ TreeMap | List | Y | N | Y
 TreeSet | Set | Y | N | Y
 Vector | List | N | N | N
 
+Both Comparable and Comparator are Functional Interfaces.
+
+Difference  | Comparable | Comparator
+------------- | ------------- | -------------
+Package Name | java.lang | java.util
+Interface must be implemented by class comparing | Y | N
+Method name in interface | compareTo | compare
+Number of parameters | 1 | 2
+Common to declare using a lambda | N | Y
+
 ## Lambda Built-in Functional Interfaces
 
 ## Exceptions and Assertions
