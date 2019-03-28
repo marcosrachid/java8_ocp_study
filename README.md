@@ -298,6 +298,17 @@ BiFunction<T, U, R> | 2(T, U) | R | apply
 UnaryOperator<T> | 1(T) | T | apply
 BinaryOperator<T> | 2(T, T) | T | apply
 
+Optional methods
+
+Method | When Optional is Empty | When Optional Contains a Value
+------------- | ------------- | -------------
+get() | Throws an exception | Returns value
+ifPresent(Consumer c) | Does nothing | Calls Consumer c with value
+isPresent() | Returns false | Returns true
+orElse(T other) | Returns other parameter | Returns value
+orElseGet(Supplier s) | Returns result of calling Supplier | Returns value
+orElseThrow(Supplier s) | Throws exception created by calling Supplier | Returns value
+
 ## Exceptions and Assertions
 
 ## Use Java SE 8 Date/Time API
