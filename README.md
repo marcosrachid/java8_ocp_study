@@ -349,6 +349,16 @@ DoubleStream | DoubleFunction | DoubleUnaryOperator | DoubleToIntFunction | Doub
 IntStream | IntFunction | IntToDoubleFunction | IntUnaryOperator | IntToLongFunction
 LongStream | LongFunction | LongToDoubleFunction | LongToIntFunction | LongUnaryOperator
 
+Optional types for primities
+
+ | OptionalDouble | OptionalInt | OptionalLong
+------------- | ------------- | ------------- | -------------
+Getting as a primitive | getAsDouble() | getAsInt() | getAsLong()
+orElseGet() parameter type | DoubleSupplier | IntSupplier | LongSupplier
+Return type of max() | OptionalDouble | OptionalInt | OptionalLong
+Return type of sum() | double | int | long
+Return type of avg() | OptionalDouble | OptionalDouble | OptionalDouble
+
 ## Exceptions and Assertions
 
 ## Use Java SE 8 Date/Time API
