@@ -351,7 +351,7 @@ LongStream | LongFunction | LongToDoubleFunction | LongToIntFunction | LongUnary
 
 Optional types for primities
 
- | OptionalDouble | OptionalInt | OptionalLong
+Description | OptionalDouble | OptionalInt | OptionalLong
 ------------- | ------------- | ------------- | -------------
 Getting as a primitive | getAsDouble() | getAsInt() | getAsLong()
 orElseGet() parameter type | DoubleSupplier | IntSupplier | LongSupplier
