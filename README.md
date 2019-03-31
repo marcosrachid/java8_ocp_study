@@ -349,7 +349,7 @@ DoubleStream | DoubleFunction | DoubleUnaryOperator | DoubleToIntFunction | Doub
 IntStream | IntFunction | IntToDoubleFunction | IntUnaryOperator | IntToLongFunction
 LongStream | LongFunction | LongToDoubleFunction | LongToIntFunction | LongUnaryOperator
 
-Optional types for primities
+Optional types for primitives
 
 Description | OptionalDouble | OptionalInt | OptionalLong
 ------------- | ------------- | ------------- | -------------
@@ -358,6 +358,11 @@ orElseGet() parameter type | DoubleSupplier | IntSupplier | LongSupplier
 Return type of max() | OptionalDouble | OptionalInt | OptionalLong
 Return type of sum() | double | int | long
 Return type of avg() | OptionalDouble | OptionalDouble | OptionalDouble
+
+We have three Summary Statistics class that comes from primitive streams by calling method "summaryStatistics()", which perform many calculations about the stream, including minimum, maximum, average, size and the number of alues i the stream, they are:
+* IntSummaryStatistics
+* LongSummaryStatistics
+* DoubleSummaryStatistics
 
 ## Exceptions and Assertions
 
