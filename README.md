@@ -311,7 +311,7 @@ orElseThrow(Supplier s) | Throws exception created by calling Supplier | Returns
 
 There are three parts to a stream pipeline:
 * Source: Where the stream comes from;
-* Intermediate operations: Transforms the stream into another one. There can be as few or as many intermediate operations as you'd like. Since streams use lazy evaluation, the intermediate operations do not run until the terminal operation runs.
+* Intermediate operations: Transforms the stream into another one. There can be as few or as many intermediate operations as you'd like. Since streams use lazy evaluation, the intermediate operations do not run until the terminal operation runs;
 * Terminal operation: Actually produces a result. Since streams can be used only once, the stream is no longer valid after a terminal operation completes.
 
 Terminal stream operations
@@ -325,6 +325,20 @@ findAny()/findFirst() | Terminates | Optional<T> | N
 forEach() | Does not terminate | void | N
 min()/max() | Does not terminate | Optional<T> | Y
 reduce() | Does not terminate | varies | Y
+
+There are three types of primitive streams:
+* IntStream: Used for the primitive types int, short, byte and char;
+* LongStream: Used for the primitive type long;
+* DoubleStream: Used for the primitive types double and float.
+
+Mapping methods between types of streams
+
+Source Stream Class | To Create Stream | To Create DoubleStream | To Create IntStream | To Create LongStream
+------------- | ------------- | ------------- | ------------- | -------------
+Stream | map | mapToDouble | mapToInt | mapToLong
+DoubleStream | mapToObj | map | mapToInt | mapToLong
+IntStream | mapToObj | mapToDouble | map | mapToLong
+LongStream | mapToObj | mapToDouble | mapToInt | map
 
 ## Exceptions and Assertions
 
