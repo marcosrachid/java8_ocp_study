@@ -340,6 +340,15 @@ DoubleStream | mapToObj | map | mapToInt | mapToLong
 IntStream | mapToObj | mapToDouble | map | mapToLong
 LongStream | mapToObj | mapToDouble | mapToInt | map
 
+Function parameters when mapping between types of streams
+
+Source Stream Class | To Create Stream | To Create DoubleStream | To Create IntStream | To Create LongStream
+------------- | ------------- | ------------- | ------------- | -------------
+Stream | Function | ToDoubleFunction | ToIntFunction | ToLongFunction
+DoubleStream | DoubleFunction | DoubleUnaryOperator | DoubleToIntFunction | DoubleToLongFunction
+IntStream | IntFunction | IntToDoubleFunction | IntUnaryOperator | IntToLongFunction
+LongStream | LongFunction | LongToDoubleFunction | LongToIntFunction | LongUnaryOperator
+
 ## Exceptions and Assertions
 
 ## Use Java SE 8 Date/Time API
