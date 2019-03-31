@@ -309,6 +309,23 @@ orElse(T other) | Returns other parameter | Returns value
 orElseGet(Supplier s) | Returns result of calling Supplier | Returns value
 orElseThrow(Supplier s) | Throws exception created by calling Supplier | Returns value
 
+There are three parts to a stream pipeline:
+* Source: Where the stream comes from;
+* Intermediate operations: Transforms the stream into another one. There can be as few or as many intermediate operations as you'd like. Since streams use lazy evaluation, the intermediate operations do not run until the terminal operation runs.
+* Terminal operation: Actually produces a result. Since streams can be used only once, the stream is no longer valid after a terminal operation completes.
+
+Terminal stream operations
+
+Method | What Happens for Infinite Streams | Return Value | Reduction
+------------- | ------------- | ------------- | -------------
+allMatch()/anyMatch()/noneMatch() | Sometimes terminates | boolean | N
+collect() | Does not terminate | varies | Y
+count() | Does not terminate | long | Y
+findAny()/findFirst() | Terminates | Optional<T> | N
+forEach() | Does not terminate | void | N
+min()/max() | Does not terminate | Optional<T> | Y
+reduce() | Does not terminate | varies | Y
+
 ## Exceptions and Assertions
 
 ## Use Java SE 8 Date/Time API
