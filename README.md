@@ -387,7 +387,7 @@ DoubleBinaryOperator | 2(double, double) | double | applyAsDouble
 IntBinaryOperator | 2(int, int) | int | applyAsInt
 LongBinaryOperator | 2(long, long) | long | applyAsLong
 
-Primitie-specific functional interfaces
+Primitive-specific functional interfaces
 
 Functional Interfaces | Parameters | Return Type | Single Abstract Method
 ------------- | ------------- | ------------- | -------------
@@ -416,6 +416,28 @@ There are 4 final classes when working dates and times:
 * LocalTime: Contains just a time, no date and no zone;
 * LocalDateTime: Contains both date and time, no zone;
 * ZonedDateTime: Contains date, time and timezone.
+
+Method "of" is the factory method that exists in all of the classes above. Below the overloaded methods:
+
+* LocalDate
+	* of(int year, int month, int dayOfMonth)
+	* of(int year, Month month, int dayOfMonth)
+* LocalTime
+	* of(int hour, int minute)
+	* of(int hour, int minute, int second)
+	* of(int hour, int minute, int second, int nanos)
+* LocalDateTime
+	* of(int year, int month, int dayOfMonth, int hour, int minute)
+	* of(int year, int month, int dayOfMonth, int hour, int minute, int second)
+	* of(int year, int month, int dayOfMonth, int hour, int minute, int second, int nanos)
+	* of(int year, Month month, int dayOfMonth, int hour, int minute)
+	* of(int year, Month month, int dayOfMonth, int hour, int minute, int second)
+	* of(int year, Month month, int dayOfMonth, int hour, int minute, int second, int nanos)
+	* of(LocalDate date, LocalTime time)
+* ZonedDateTime
+	* of(int year, int month, int dayOfMonth, int hour, int minute, int second, int nanos, ZonedId zone)
+	* of(LocalDate date, LocalTime time, ZonedId zone)
+	* of(LocalDateTime dateTime, ZonedId zone)
 
 ## Java I/O Fundamentals
 
