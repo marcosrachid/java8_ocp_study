@@ -438,6 +438,41 @@ Method "of" is the factory method that exists in all of the classes above. Below
 	* of(int year, int month, int dayOfMonth, int hour, int minute, int second, int nanos, ZonedId zone)
 	* of(LocalDate date, LocalTime time, ZonedId zone)
 	* of(LocalDateTime dateTime, ZonedId zone)
+	
+Methods in LocalDate, LocalTime, LocalDateTime and ZonedDateTime
+
+Method | Can Call on LocalDate? | Can Call on LocalTime? | Can Call on LocalDateTime or ZonedDateTime?
+------------- | ------------- | ------------- | -------------
+plusYears/minusYears | Y | N | Y
+plusMonths/minusMonths | Y | N | Y
+plusWeeks/minusWeeks | Y | N | Y
+plusDays/minusDays | Y | N | Y
+plusHours/minusHours | N | Y | Y
+plusMinutes/minusMinutes | N | Y | Y
+plusSeconds/minusSeconds | N | Y | Y
+plusNanos/minusNanos | N | Y | Y
+
+LocalDate, LocalDateTime and ZonedDateTime have "toEpochSecond()" to transform a date to a long unixtime value. The OCP will pretend that this method exist on LocalTime.
+
+Period final class represent a date period in year or/and months or/and days
+
+Period factories:
+* ofYears(int years)
+* ofWeeks(int weeks)
+* ofMonths(int months)
+* ofDays(int days)
+* of(int years, int months, int days)
+
+Period object can be used to "plus" and "minus" methods from LocalDate, LocalDateTime and ZonedDateTime that returns a new object. The OCP will pretend that this method exist on LocalTime.
+
+Period toString format:
+```
+	System.out.println(Period.ofYears(1));  // P1Y
+	System.out.println(Period.ofWeeks(3));  // P21D
+	System.out.println(Period.ofMonths(3)); // P3M
+	System.out.println(Period.ofDays(2));   // P2D
+	System.out.println(Period.of(1,2,3));   // P1Y2M3D
+```
 
 ## Java I/O Fundamentals
 
