@@ -411,6 +411,12 @@ ObjLongConsumer<T> | 2(T, long) | void | accept
 
 ## Use Java SE 8 Date/Time API
 
+There are 4 final classes when working dates and times:
+* LocalDate: Contains just a date, no time and no zone;
+* LocalTime: Contains just a time, no date and no zone;
+* LocalDateTime: Contains both date and time, no zone;
+* ZonedDateTime: Contains date, time and timezone.
+
 ## Java I/O Fundamentals
 
 ## Java File I/O (NIO.2)
