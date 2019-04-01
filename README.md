@@ -463,7 +463,7 @@ Period factories:
 * ofDays(int days)
 * of(int years, int months, int days)
 
-Period object can be used to "plus" and "minus" methods from LocalDate, LocalDateTime and ZonedDateTime that returns a new object. The OCP will pretend that this method exist on LocalTime.
+Period object can be used to "plus" and "minus" methods from LocalDate, LocalDateTime, ZonedDateTime and Period that returns a new object. The OCP will pretend that this method exist on LocalTime and Duration.
 
 Period toString format:
 ```
@@ -473,6 +473,62 @@ Period toString format:
 	System.out.println(Period.ofDays(2));   // P2D
 	System.out.println(Period.of(1,2,3));   // P1Y2M3D
 ```
+
+Duration final class represent a time duration in days or hours or minutes or seconds or milliseconds or nanoseconds.
+
+Duration factories:
+* ofDays(long days)
+* ofHours(long hours)
+* ofMillis(long millis)
+* ofMinutes(long minutes)
+* ofNanos(long nanos)
+* ofSeconds(long seconds)
+* ofSeconds(long seconds, long nanoAdjustment)
+* of(long amount, TemporalUnit unit)
+
+Duration object can be used to "plus" and "minus" methods from LocalTime, LocalDateTime, ZonedDateTime and Duration that returns a new object. The OCP will pretend that this method exist on LocalDate and Period.
+
+Duration toString format:
+```
+	System.out.println(Period.ofDays(1));                  // PT24H
+	System.out.println(Period.ofHours(1));                 // PT1H
+	System.out.println(Period.ofMinutes(1));               // PT1M
+	System.out.println(Period.ofSeconds(10));              // PT10S
+	System.out.println(Period.ofMillis(1));                // PT0.001S
+	System.out.println(Period.ofNanos(1));                 // PT0.000000001S
+	System.out.println(Period.of(1, ChronoUnit.DAYS));     // PT24H
+	System.out.println(Period.of(1, ChronoUnit.HOURS));    // PT1H
+	System.out.println(Period.of(1, ChronoUnit.MINUTES));  // PT1M
+	System.out.println(Period.of(10, ChronoUnit.SECONDS)); // PT10S
+	System.out.println(Period.of(1, ChronoUnit.MILLIS));   // PT0.001S
+	System.out.println(Period.of(1, ChronoUnit.NANOS));    // PT0.000000001S
+```
+
+Class | Can Use with Period? | Can Use with Duration?
+------------- | ------------- | -------------
+LocalDate | Y | N
+LocalDateTime | Y | Y
+LocalTime | N | Y
+ZonedDateTime | Y | Y
+
+ChronoUnit is a TemporalUnit.
+
+ChronoUnit for differences:
+```
+LocalTime one = LocalTime.of(5, 15);
+LocalTime two = LocalTime.of(6, 30);
+LocalDate date = LocalDate.of(2016, 1, 20);
+
+System.out.println(ChronoUnit.HOURS.between(one, two);    // 1
+System.out.println(ChronoUnit.MINUTES.between(one, two);  // 75
+System.out.println(ChronoUnit.MINUTES.between(one, date); // DateTimeException due to time vs date
+```
+
+Instant class represents a specific moment in time in the GMT timezone.
+
+If you have a Date or ZonedDateTime, you can use "toInstant()" to get the Instant object. ZonedDateTime object will transform its current zone date and time to the GMT date and time.
+
+Daylight savings time automatically adjusts depending on the zone.
 
 ## Java I/O Fundamentals
 
