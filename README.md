@@ -625,6 +625,51 @@ public class Zoo_en_US extends ListResourceBundle {
 }
 ```
 
+Ilustration of resource bundle files priority, picking a resource bundle for French in France with default locale US English
+
+Step | Looks For File | Reason
+------------- | ------------- | -------------
+1 | Zoo_fr_FR.java | The requested locale
+2 | Zoo_fr_FR.properties | The requested locale
+3 | Zoo_fr.java | The language we requested with no country
+4 | Zoo_fr.properties | The language we requested with no country
+5 | Zoo_en_US.java | The default locale
+6 | Zoo_en_US.properties | The default locale
+7 | Zoo_en.java | The default language with no country
+8 | Zoo_en.properties | The default language with no country
+9 | Zoo.java | No locale at all - the default bundle
+10 | Zoo.properties | No locale at all - the default bundle
+11 | If still not found, throw MissingResourceException | none
+
+NumberFormat uses default locale and a specified locale to parse Number, Currency and Percentage based on country format.
+
+Description | Using Default Locale and Specified Locale
+------------- | -------------
+A general purpose formatter with default Locale | NumberFormat.getInstance()
+A general purpose formatter with specified Locale | NumberFormat.getInstance(locale)
+Same as getInstance with default Locale | NumberFormat.getNumberInstance()
+Same as getInstance with specified Locale | NumberFormat.getNumberInstance(locale)
+For formatting monetary amounts with default Locale | NumberFormat.getCurrencyInstance()
+For formatting monetary amounts with specified Locale | NumberFormat.getCurrencyInstance(locale)
+For formatting percentages with default locale | NumberFormat.getPercentInstance()
+For formatting percentages with specified locale | NumberFormat.getPercentInstance(locale)
+Round decimal values before displaying with default Locale (not on exam) | NumberFormat.getIntegerInstance()
+Round decimal values before displaying with specified Locale (not on exam) | NumberFormat.getIntegerInstance(locale)
+
+Ex:
+```
+...
+	int attendeesPerYear = 3_200_000;
+	int attendeesPerMonth = attendeesPerYear / 12;
+	NumberFormat us = NumberFormat.getInstance(Locale.US);
+	System.out.println(us.format(attendeesPerMonth)); // 266,666
+	NumberFormat g = NumberFormat.getInstance(Locale.GERMANY);
+	System.out.println(us.format(attendeesPerMonth)); // 266.666
+	NumberFormat ca = NumberFormat.getInstance(Locale.CANADA_FRENCH);
+	System.out.println(us.format(attendeesPerMonth)); // 266 666
+...
+```
+
 Source  | Data
 ------------- | -------------
 Take Exam  | <https://education.oracle.com/pt_BR/java-se-8-programmer-ii/pexam_1Z0-809>
