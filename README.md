@@ -566,6 +566,65 @@ not necessary to memorize codes for OCP
 
 Locale has a third constructor "Locale(String language, String country, String variant)", that is not used on exam.
 
+Resource Bundle contains the local specific objects to be used by a program. It is like a map with keys and values. The resource bundle can be in a property file or in a Java class.
+
+Resource Bundle that will be used will depends on the Locale passed on the locale parameter or its default locale. Ex: 
+Zoo_en.properties:
+```
+hello=Hello
+open=The zoo is open
+```
+Zoo_fr.properties:
+```
+hello=Bonjour
+open=Le zoo est ouvert
+```
+Code:
+```
+import java.util.*;
+public class ZooOpen {
+	public static void main(String[] args) {
+		Locale us = new Locale("en", "US");
+		Locale france = new Locale("fr", "FR");
+		
+		Resource rb = ResourceBundle.getBundle("Zoo", us);
+		System.out.println(rb.getString("hello")); // Hello
+		System.out.println(rb.getString("open")); // The zoo is open
+		
+		rb = ResourceBundle.getBundle("Zoo", france);
+		System.out.println(rb.getString("hello")); // Bonjour
+		System.out.println(rb.getString("open")); // Le zoo est ouvert
+	}
+}
+```
+
+Properties has some additional features, including being able to passa a default.
+
+Return values of a Properties instance's getProperty():
+
+Key Found? | Y | N
+------------- | ------------- | -------------
+getProperty("key") | Value | null
+getProperty("key", "default") | Value | "default"
+
+To create a Java class resource bundle it's necessary to create a class that extends "ListResourceBundle". Ex:
+```
+package animal;
+import java.util.*;
+public class Zoo_en_US extends ListResourceBundle {
+	protected Object[][] getContents() {
+		return new Object[][] {
+			{ "hello", "Hello" },
+			{ "open", "The zoo is open" }
+		};
+	}
+	public static void main (String[] args) { // executable is not necessary for the resource bundle, it's only to ilustrate
+		ResourceBundle rb = ResourceBundle.getBundle("animal.Zoo", Locale.US);
+		System.out.println(rb.getString("hello")); // Hello
+	}
+}
+```
+
 Source  | Data
 ------------- | -------------
 Take Exam  | <https://education.oracle.com/pt_BR/java-se-8-programmer-ii/pexam_1Z0-809>
