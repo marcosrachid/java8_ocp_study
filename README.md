@@ -540,6 +540,31 @@ Daylight savings time automatically adjusts depending on the zone.
 
 ## Localization
 
+Get current default locale with "Locale.getDefault()".
+
+Set defaut locale with "Locale.setDefault(Locale locale)". The locale set will mantain till the end of program or till it is changed.
+
+You can use constants Locales for language or language+country:
+```
+	System.out.println(Locale.GERMAN); // de
+	System.out.println(Locale.GERMANY); // de_DE
+```
+or use Locale constructors to language or language+country:
+```
+	System.out.println(new Locale("de")); // de
+	System.out.println(new Locale("de", "DE")); // de_DE
+```
+or you can use Locale builder:
+```
+	System.out.println(Locale.Builder.setLanguage("de").build()); // de
+	System.out.println(Locale.Builder.setLanguage("de").setRegion("DE").build()); // de_DE
+```
+
+The case on language and region doesn't interfer.
+
+not necessary to memorize codes for OCP
+
+Locale has a third constructor "Locale(String language, String country, String variant)", that is not used on exam.
 
 Source  | Data
 ------------- | -------------
