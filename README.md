@@ -530,6 +530,41 @@ If you have a Date or ZonedDateTime, you can use "toInstant()" to get the Instan
 
 Daylight savings time automatically adjusts depending on the zone.
 
+DateTimeFormatter can use pre-defined formats or a pattern.
+
+Pre-defined formats:
+* DateTimeFormatter df = DateTimeFormatter.ISO_LOCAL_DATE: 2020-01-20
+* DateTimeFormatter df = DateTimeFormatter.ISO_LOCAL_TIME: 11:12:34
+* DateTimeFormatter df = DateTimeFormatter.ISO_LOCAL_DATE_TIME: 2020-01-20T11:12;34
+
+Pre-defined formats using FormatStyle:
+* DateTimeFormatter df = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT): '12.13.52' or '3:30pm'
+* DateTimeFormatter df = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM): 'Jan 12, 1952
+* DateTimeFormatter df = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG): January 12, 1952
+* DateTimeFormatter df = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL): Tuesday, April 12, 1952 AD' or '3:30:42pm PST
+
+Using pattern seems like: 
+```
+DateTimeFormatter df = DateTimeFormatter.ofPattern("MMMM dd, yyyy, hh:mm");
+```
+* MMMM: M represents the month, being "M" like 1, "MM" like 01, MMM like "Jan" and MMMM like "January";
+* dd: d represents day in the month, beind "d" like 1 and "dd" like 01. For double digit the "d" will output both digits;
+* yyyy: y represents year, being "yy" two-digit year and "yyyy" four-digit year;
+* hh: h represents hour, being "hh" to include leading zero;
+* mm: m represents minute omitting the leading zero if present, being "m" the one-digit and "mm" the two-digit and more common.
+
+format Ex:
+```
+LocalDateTime datetime = LocalDateTime.of(2020, Month.JANUARY, 20, 11, 12, 34);
+DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+DateTimeFormatter mediumF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);
+DateTimeFormatter f = DateTimeFormatter.ofPattern("MMMM dd, yyyy, hh:mm");
+System.out.println(datetime.format(shortF)); // 1/20/20 11:12 AM
+System.out.println(datetime.format(mediumF)); // Jan 20, 2020 11:12:34 AM
+System.out.println(datetime.format(f)); // January 20, 2020, 11:12
+System.out.println(datetime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)); // 2020-01-20T11:12:34
+```
+
 ## Java I/O Fundamentals
 
 ## Java File I/O (NIO.2)
