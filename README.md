@@ -553,7 +553,7 @@ DateTimeFormatter df = DateTimeFormatter.ofPattern("MMMM dd, yyyy, hh:mm");
 * hh: h represents hour, being "hh" to include leading zero;
 * mm: m represents minute omitting the leading zero if present, being "m" the one-digit and "mm" the two-digit and more common.
 
-format Ex:
+format is a java.time object to String method. Ex:
 ```
 LocalDateTime datetime = LocalDateTime.of(2020, Month.JANUARY, 20, 11, 12, 34);
 DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
@@ -563,6 +563,15 @@ System.out.println(datetime.format(shortF)); // 1/20/20 11:12 AM
 System.out.println(datetime.format(mediumF)); // Jan 20, 2020 11:12:34 AM
 System.out.println(datetime.format(f)); // January 20, 2020, 11:12
 System.out.println(datetime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)); // 2020-01-20T11:12:34
+```
+
+parse is a String to java.time object method. Ex:
+```
+DateTimeFormatter f = DateTimeFormatter.ofPattern("MM dd yyyy");
+LocalDate date = LocalDate.parse("01 02 2015", f);
+LocalTime time = LocalTime.parse("11:22");
+System.out.println(date); // 2015-01-02
+System.out.println(time); // 11:22
 ```
 
 ## Java I/O Fundamentals
