@@ -413,6 +413,21 @@ Categories of exceptions
 
 ![Throwable structure](http://journals.ecs.soton.ac.uk/java/tutorial/java/exceptions/images/throwableHierarchy_trans.gif)
 
+OCP exceptions
+
+Exception | Used when | Checked or unchecked?
+------------- | ------------- | ------------- | -------------
+java.text.ParseException | Converting a String to a number. |  checked
+java.io.IOException | Dealing with IO and NIO.2 issues. | checked
+java.io.FileNotFoundException | Dealing with IO and NIO.2 issues. | checked
+java.io.NotSerializableException | Dealing with IO and NIO.2 issues. | checked
+java.sql.SQLException | Dealing with database issues. | checked
+java.lang.ArrayStoreException | Trying to store the wrong data type in an array. | unchecked
+java.time.DateTimeException | Receiving an inalid format string for a date. | unchecked
+java.util.MissingResourceException | Trying to access a key or resource bundle that does not exist. | unchecked
+java.lang.IllegalStateException | Attempting to run an invalid operation in collections and concurrency | unchecked
+java.lang.UnsupportedOperationException | Attempting to run an invalid operation in collections and concurrency | unchecked
+
 ## Use Java SE 8 Date/Time API
 
 There are 4 final classes when working dates and times:
