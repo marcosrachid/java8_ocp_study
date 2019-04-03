@@ -441,6 +441,7 @@ The OCP exam might try to fool you with different syntax like "Exception1 e1 | E
 The order of the multi-catch exceptions does not matter.
 
 Java intends multi-catch to be used for exceptions that aren't related, and it prevents you from specifying redundant types in a multi-catch.
+```
 try {
 	// Implementation
 } catch (FileNotFoundException | IOException e) { // Does not compile since FileNotFoundException is an IOException 
