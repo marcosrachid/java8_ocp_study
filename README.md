@@ -428,6 +428,28 @@ java.util.MissingResourceException | Trying to access a key or resource bundle t
 java.lang.IllegalStateException | Attempting to run an invalid operation in collections and concurrency | unchecked
 java.lang.UnsupportedOperationException | Attempting to run an invalid operation in collections and concurrency | unchecked
 
+It's possible to create multi-catch to handle more than one exception the same way.
+```
+try {
+	// Implementation
+} catch (Exception1 | Exception2 e) {
+	// Exception handler
+}
+```
+The OCP exam might try to fool you with different syntax like "Exception1 e1 | Exception2 e2", but the variable is shared between exception types.
+
+The order of the multi-catch exceptions does not matter.
+
+Java intends multi-catch to be used for exceptions that aren't related, and it prevents you from specifying redundant types in a multi-catch.
+try {
+	// Implementation
+} catch (FileNotFoundException | IOException e) { // Does not compile since FileNotFoundException is an IOException 
+	// Exception handler
+}
+```
+
+multi-catch variable is effectively final. It's not compile if you try to assign a new Exception to it.
+
 ## Use Java SE 8 Date/Time API
 
 There are 4 final classes when working dates and times:
