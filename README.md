@@ -409,6 +409,10 @@ ObjLongConsumer<T> | 2(T, long) | void | accept
 
 ## Exceptions and Assertions
 
+Categories of exceptions
+
+![Throwable structure](http://journals.ecs.soton.ac.uk/java/tutorial/java/exceptions/images/throwableHierarchy_trans.gif)
+
 ## Use Java SE 8 Date/Time API
 
 There are 4 final classes when working dates and times:
