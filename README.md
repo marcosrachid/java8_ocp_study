@@ -416,7 +416,7 @@ Categories of exceptions
 OCP exceptions
 
 Exception | Used when | Checked or unchecked?
-------------- | ------------- | ------------- | -------------
+------------- | ------------- | -------------
 java.text.ParseException | Converting a String to a number. |  checked
 java.io.IOException | Dealing with IO and NIO.2 issues. | checked
 java.io.FileNotFoundException | Dealing with IO and NIO.2 issues. | checked
