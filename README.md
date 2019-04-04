@@ -475,6 +475,26 @@ AutoCloseable vs Closeable
 * AutoCloseable has method "public void close() throws Exception;" while Closeable has "public void close() throws IOException;";
 * Closeable requires implementations to be idempotent.
 
+assertion is a Boolean expression that you place at a point in your code where you expect something to be true.
+
+assertion syntax might be of two forms:
+* assert boolean_expression; -> assert(0>1); // "()" are not mandatory
+* assert boolean_expression: error_message; -> assert(0>1): "0 lesser then 1"; // "()" are not mandatory
+
+The three outcomes of an assert statement are as follows:
+* if assertions are disabled, Java skips the assertion and goes on in the code.
+* if assertions are enabled and the boolean expression is true, then our assertion has been validated and nothing happens. The program continues to execute in its normal manner.
+* if assertions are enabled and the boolean expression is false, then our assertion is invalid and a java.lang.AssertionError is thrown.
+
+Enabling assertions:
+* java -enableassertions ProgramClass: enable assertion on full program
+* java -ea ProgramClass: enable assertion on full program
+* java -ea:com.my.demopackage... ProgramClass: enable assertion on a specific package
+* java -ea:com.my.demopackage.AnotherClass ProgramClass: enable assertion on a specific class
+* java -ea:com.my.demopackage.AnotherClass ProgramClass: enable assertion on a specific class
+* java -ea:com.my.demopackage... -disableassertions:com.my.demopackage.AnotherClass ProgramClass: enable assertion on a specific package but disable on a specific class
+* java -ea:com.my.demopackage... -da:com.my.demopackage.AnotherClass ProgramClass: enable assertion on a specific package but disable on a specific class
+
 ## Use Java SE 8 Date/Time API
 
 There are 4 final classes when working dates and times:
