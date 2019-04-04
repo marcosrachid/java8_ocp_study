@@ -451,6 +451,26 @@ try {
 
 multi-catch variable is effectively final. It won't compile if you try to reassign a new Exception to it.
 
+try-with-resources a kind of try syntax that ensures resources(Autocloseable and Closeable) contained in "()" are closed
+
+try-with-resources, differently from traditional try, does not need a catch or finally statement to compile.
+
+resources from try-with-resources are closed at the end of try statement block execution.
+
+Legal vs illegal configuration with a traditional try
+
+x | 0 finally blocks | 1 finally block | 2 or more finally blocks
+------------- | ------------- | ------------- | -------------
+0 catch blocks | Not legal | Legal | Not legal
+1 or more catch blocks | Legal | Legal | Not Legal
+
+Legal vs illegal configuration with a try-with-resources
+
+x | 0 finally blocks | 1 finally block | 2 or more finally blocks
+------------- | ------------- | ------------- | -------------
+0 catch blocks | Legal | Legal | Not legal
+1 or more catch blocks | Legal | Legal | Not Legal
+
 ## Use Java SE 8 Date/Time API
 
 There are 4 final classes when working dates and times:
