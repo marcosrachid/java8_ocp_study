@@ -449,7 +449,7 @@ try {
 }
 ```
 
-multi-catch variable is effectively final. It's not compile if you try to assign a new Exception to it.
+multi-catch variable is effectively final. It won't compile if you try to reassign a new Exception to it.
 
 ## Use Java SE 8 Date/Time API
 
