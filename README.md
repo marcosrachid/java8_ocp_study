@@ -471,6 +471,10 @@ x | 0 finally blocks | 1 finally block | 2 or more finally blocks
 0 catch blocks | Legal | Legal | Not legal
 1 or more catch blocks | Legal | Legal | Not Legal
 
+AutoCloseable vs Closeable
+* AutoCloseable has method "public void close() throws Exception;" while Closeable has "public void close() throws IOException;";
+* Closeable requires implementations to be idempotent.
+
 ## Use Java SE 8 Date/Time API
 
 There are 4 final classes when working dates and times:
