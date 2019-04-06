@@ -694,6 +694,22 @@ public class Printer implements Thread {
 
 Thread class is hardly used on OCP.
 
+ExecutorService is the interface which creates and manages threads for you. You can get an instance throught Executors class factory methods.
+
+You can shutdown a thread executor throught "shutdown()" method or "shutdownNow()". The difference between then is:
+* "shutdown()" will firstly set to reject eery new task submitted to the thread executor while continuing to execute any previously submitted task. During this time, calling "isShutdown()" will return true, while "isTerminated()" will return false. If a new task is submitted to the thread executor while it shutting down, a "RejectedExecutionException" will be thrown. Once all actie tasks have been completed, "isShutdown()" and "isTerminated()" will both return true.
+* "shutdownNow()" will attempt to stop all running tasks and discards any that hae not been started yet and it returns a List<Runnable> of tasks that were submitted to the thread executor but that were never started.
+
+ExecutorService submitting tasks methods:
+
+Method name | Description
+------------- | -------------
+void execute(Runnable command) | Executes a Runnable task at some point the future
+Future<?> submit(Runnable task) | Executes a Runnable task at some point the future and returns a Future respresenting the task
+<T> Future<T> submit(Callable<T> task) | Executes a Caççançe task at some point in the future and returns a Future representing the pending results of the task
+<T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks) throws InterruptedException | Executes the gien tasks, synchronously returning the results of all tasks as a Collection of Future objects, in the same order they were in the original collection
+<T> T invokeAny(Collection<? extends Callable<T>> tasks) throws InterruptedException, ExecutionException | Executes the gien tasks, synchronously returning the result of one of finished tasks, cancelling any unfinished tasks
+
 ## Building Database Applications with JDBC
 
 ## Localization
