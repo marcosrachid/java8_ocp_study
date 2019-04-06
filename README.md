@@ -710,6 +710,18 @@ Future<?> submit(Runnable task) | Executes a Runnable task at some point the fut
 &lt;T&gt; List<Future&lt;T&gt;> invokeAll(Collection<? extends Callable&lt;T&gt;> tasks) throws InterruptedException | Executes the gien tasks, synchronously returning the results of all tasks as a Collection of Future objects, in the same order they were in the original collection
 &lt;T&gt; T invokeAny(Collection<? extends Callable&lt;T&gt;> tasks) throws InterruptedException, ExecutionException | Executes the gien tasks, synchronously returning the result of one of finished tasks, cancelling any unfinished tasks
 
+"execute()" and "submit()" methods are nearly identical when applied to Runnable expressions. The "submit()" method has the obvious advantage of doing the exact same thing "execute()" does, but with a return object that can be used to track the result.
+
+Future methods:
+
+Method name | Description
+------------- | -------------
+boolean isDone() | Returns true if the task was completed, threw an exception or was cancelled
+boolean isCancelled() | Returns true if the task was cancelled before it completely normally
+boolean cancel() | Attempts to cancel execution of the task
+V get() | Retrieves the result of a task, waiting endlessly if it is not yet available
+V get(long timeout, TimeUnit unit) | Retrieves the result of a task, waiting the specified amout of time. if the result is not ready by the time the timeout is reached, a checked TimeoutException will be thrown
+
 ## Building Database Applications with JDBC
 
 ## Localization
