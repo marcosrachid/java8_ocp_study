@@ -666,6 +666,34 @@ System.out.println(time); // 11:22
 
 ## Java Concurrency
 
+Runnable is a functional interface that takes no arguments and returns no data with the method "void run()".
+
+Defining the task, or work, tat a Thread instance will execute can be done two ways in java:
+* Provide a Runnable object or lambda expression to the Thread constructor.
+```
+public class Printer implements Runnable {
+	public void run() {
+		System.out.println("Done.");
+	}
+	public static void main(String[] args) {
+		(new Thread(new Printer())).start();
+	}
+}
+```
+* Create a class that extends Thread and overrides the "run()" method.
+```
+public class Printer implements Thread {
+	public void run() {
+		System.out.println("Done.");
+	}
+	public static void main(String[] args) {
+		(new Printer()).start();
+	}
+}
+```
+
+Thread class is hardly used on OCP.
+
 ## Building Database Applications with JDBC
 
 ## Localization
