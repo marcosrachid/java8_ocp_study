@@ -207,7 +207,7 @@ public class A {
 
 Generics allow you to write and use parameterized types, for example you can specify that you want a ArrayList of String objects. ex:
 ```
-public class A<T> {
+public class A&lt;T&gt; {
 	T obj;
 }
 ```
@@ -215,7 +215,7 @@ public class A<T> {
 It's possible to use generic to a specific method. ex:
 ```
 ...
-	public static <T> void call(T t) {}
+	public static &lt;T&gt; void call(T t) {}
 ...
 ```
 calling:
@@ -233,7 +233,7 @@ Type of bound  | Syntax  | Example
 ------------- | ------------- | -------------
 Unbounded wildcard  | ?  | List<?> l = new ArrayList<String>();
 Wildcard with an upper bound  | ? extends type  | List<? extends Exception> l = new ArrayList<RuntimeException>();
-Wildcard with lower bound  | ? super type  | List<? super Exception> l = new ArrayList<Object>();
+Wildcard with lower bound  | ? super type  | List<? super Exception> l = new ArrayList<ObjecT&gt;();
 
 Collection interface has three main sub-interfaces: List, Set and Queue.
 
@@ -288,15 +288,15 @@ Built-in Functional Interfaces
 
 Functional Interfaces | Parameters | Return Type | Single Abstract Method
 ------------- | ------------- | ------------- | -------------
-Supplier<T> | 0 | T | get
-Consumer<T> | 1(T) | void | accept
+Supplier&lt;T&gt; | 0 | T | get
+Consumer&lt;T&gt; | 1(T) | void | accept
 BiConsumer<T, U> | 2(T, U) | void | accept
-Predicate<T> | 1(T) | boolean | test
+Predicate&lt;T&gt; | 1(T) | boolean | test
 BiPredicate<T, U> | 2(T, U) | boolean | test
 Function<T, R> | 1(T) | R | apply
 BiFunction<T, U, R> | 2(T, U) | R | apply
-UnaryOperator<T> | 1(T) | T | apply
-BinaryOperator<T> | 2(T, T) | T | apply
+UnaryOperator&lt;T&gt; | 1(T) | T | apply
+BinaryOperator&lt;T&gt; | 2(T, T) | T | apply
 
 Optional methods
 
@@ -321,9 +321,9 @@ Method | What Happens for Infinite Streams | Return Value | Reduction
 allMatch()/anyMatch()/noneMatch() | Sometimes terminates | boolean | N
 collect() | Does not terminate | varies | Y
 count() | Does not terminate | long | Y
-findAny()/findFirst() | Terminates | Optional<T> | N
+findAny()/findFirst() | Terminates | Optional&lt;T&gt; | N
 forEach() | Does not terminate | void | N
-min()/max() | Does not terminate | Optional<T> | Y
+min()/max() | Does not terminate | Optional&lt;T&gt; | Y
 reduce() | Does not terminate | varies | Y
 
 There are three types of primitive streams:
@@ -391,9 +391,9 @@ Primitive-specific functional interfaces
 
 Functional Interfaces | Parameters | Return Type | Single Abstract Method
 ------------- | ------------- | ------------- | -------------
-ToDoubleFunction<T> | 1(T) | double | applyAsDouble
-ToIntFunction<T> | 1(T) | int | applyAsInt
-ToLongFunction<T> | 1(T) | long | applyAsLong
+ToDoubleFunction&lt;T&gt; | 1(T) | double | applyAsDouble
+ToIntFunction&lt;T&gt; | 1(T) | int | applyAsInt
+ToLongFunction&lt;T&gt; | 1(T) | long | applyAsLong
 ToDoubleBiFunction<T, U> | 2(T, U) | double | applyAsDouble
 ToIntBiFunction<T, U> | 2(T, U) | int | applyAsInt
 ToLongBiFunction<T, U> | 2(T, U) | long | applyAsLong
@@ -403,9 +403,9 @@ IntToDoubleFunction | 1(int) | double | applyAsDouble
 IntToLongFunction | 1(int) | long | applyAsLong
 LongToDoubleFunction | 1(long) | double | applyAsDouble
 LongToIntFunction | 1(long) | int | applyAsInt
-ObjDoubleConsumer<T> | 2(T, double) | void | accept
-ObjIntConsumer<T> | 2(T, int) | void | accept
-ObjLongConsumer<T> | 2(T, long) | void | accept
+ObjDoubleConsumer&lt;T&gt; | 2(T, double) | void | accept
+ObjIntConsumer&lt;T&gt; | 2(T, int) | void | accept
+ObjLongConsumer&lt;T&gt; | 2(T, long) | void | accept
 
 ## Exceptions and Assertions
 
@@ -706,9 +706,9 @@ Method name | Description
 ------------- | -------------
 void execute(Runnable command) | Executes a Runnable task at some point the future
 Future<?> submit(Runnable task) | Executes a Runnable task at some point the future and returns a Future respresenting the task
-<T> Future<T> submit(Callable<T> task) | Executes a Caççançe task at some point in the future and returns a Future representing the pending results of the task
-<T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks) throws InterruptedException | Executes the gien tasks, synchronously returning the results of all tasks as a Collection of Future objects, in the same order they were in the original collection
-<T> T invokeAny(Collection<? extends Callable<T>> tasks) throws InterruptedException, ExecutionException | Executes the gien tasks, synchronously returning the result of one of finished tasks, cancelling any unfinished tasks
+&lt;T&gt; Future&lt;T&gt; submit(Callable&lt;T&gt; task) | Executes a Caççançe task at some point in the future and returns a Future representing the pending results of the task
+&lt;T&gt; List<Future&lt;T&gt;> invokeAll(Collection<? extends Callable&lt;T&gt;> tasks) throws InterruptedException | Executes the gien tasks, synchronously returning the results of all tasks as a Collection of Future objects, in the same order they were in the original collection
+&lt;T&gt; T invokeAny(Collection<? extends Callable&lt;T&gt;> tasks) throws InterruptedException, ExecutionException | Executes the gien tasks, synchronously returning the result of one of finished tasks, cancelling any unfinished tasks
 
 ## Building Database Applications with JDBC
 
@@ -847,7 +847,7 @@ Ex:
 Source  | Data
 ------------- | -------------
 Take Exam  | <https://education.oracle.com/pt_BR/java-se-8-programmer-ii/pexam_1Z0-809>
-Java Exam Classes(en)  |  <not yet>
-Java Exam Classes(pt-br)  |  <not yet>
-Exam Simulation(en)  | <not yet>
+Java Exam Classes(en)  |  <not yeT&gt;
+Java Exam Classes(pt-br)  |  <not yeT&gt;
+Exam Simulation(en)  | <not yeT&gt;
 Exam Simulation(pt-br)  | <https://www.udemy.com/metodologia-de-certificacao-java-8-ocp-simulados/learn/v4/overview>
