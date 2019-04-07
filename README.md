@@ -668,6 +668,12 @@ System.out.println(time); // 11:22
 
 Runnable is a functional interface that takes no arguments and returns no data with the method "void run()".
 
+Callable is a functional interface that is siilar to Runnable except that its "V call() throws Exception" method returns a value and can throw a checked exception. 
+
+The Callable interface was introduced as an alternative to the Runnable interface, since it allows more details to be retrieved easily from the task after it is completed.
+
+Callable has a lambda ambiguity with Supplier, to solve this problem, you can explicitly cast the type to the lambda.
+
 Defining the task, or work, tat a Thread instance will execute can be done two ways in java:
 * Provide a Runnable object or lambda expression to the Thread constructor.
 ```
@@ -698,7 +704,7 @@ ExecutorService is the interface which creates and manages threads for you. You 
 
 You can shutdown a thread executor throught "shutdown()" method or "shutdownNow()". The difference between then is:
 * "shutdown()" will firstly set to reject eery new task submitted to the thread executor while continuing to execute any previously submitted task. During this time, calling "isShutdown()" will return true, while "isTerminated()" will return false. If a new task is submitted to the thread executor while it shutting down, a "RejectedExecutionException" will be thrown. Once all actie tasks have been completed, "isShutdown()" and "isTerminated()" will both return true.
-* "shutdownNow()" will attempt to stop all running tasks and discards any that hae not been started yet and it returns a List<Runnable> of tasks that were submitted to the thread executor but that were never started.
+* "shutdownNow()" will attempt to stop all running tasks and discards any that have not been started yet and it returns a List<Runnable> of tasks that were submitted to the thread executor but that were never started.
 
 ExecutorService submitting tasks methods:
 
