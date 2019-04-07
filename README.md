@@ -749,6 +749,32 @@ newCachedThreadPool() | ExecutorService | Creates a thread pool that creates new
 newFixedThreadPool(int nThreads) | ExecutorService | Creates a thread pool that reuses a fixed number of threads operating off a shared unbounded queue.
 newScheduledThreadPool(int nThreads) | ScheduledExecutorService | Creates a thread pool that can schedule commands to run after a given delay or execute periodically.
 
+Atomic Classes are thread-safe classes that has atomic property that synchronizes the execution access for each thread access.
+
+Atomic Classes
+
+Class Name | Description
+------------- | -------------
+AtomicBoolean | A boolean value that may be updated atomically
+AtomicInteger | An int value that may be updated atomically
+AtomicIntegerArray | An int array in which elements may be updated atomically
+AtomicLong | A long value that may be updated atomically
+AtomicLongArray | A long array in which elements may be updated atomically
+AtomicReference | A generic object reference that may be updated atomically
+AtomicReferenceArray | An array of generic object references array in which elements may be updated atomically
+
+Common atomic methods
+
+Method Name | Description
+------------- | -------------
+get() | Retrieve the current value
+set() | Set the given value, equivalent to the assignment = operator
+getAndSet() | Atomically sets the new Value and Returns the old value
+incrementAndGet() | for numeric classes, atomic pre-increment operation equivalent to ++value
+getAndIncrement() | For numeric classes, atomic post-increment operation equivalent to value++
+decrementAndGet() | for numeric classes, atomic pre-increment operation equivalent to --value
+getAndDecrement() | For numeric classes, atomic post-increment operation equivalent to value--
+
 ## Building Database Applications with JDBC
 
 ## Localization
