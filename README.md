@@ -290,11 +290,11 @@ Functional Interfaces | Parameters | Return Type | Single Abstract Method
 ------------- | ------------- | ------------- | -------------
 Supplier&lt;T&gt; | 0 | T | get
 Consumer&lt;T&gt; | 1(T) | void | accept
-BiConsumer<T, U> | 2(T, U) | void | accept
+BiConsumer&lt;T, U&gt; | 2(T, U) | void | accept
 Predicate&lt;T&gt; | 1(T) | boolean | test
-BiPredicate<T, U> | 2(T, U) | boolean | test
-Function<T, R> | 1(T) | R | apply
-BiFunction<T, U, R> | 2(T, U) | R | apply
+BiPredicate&lt;T, U&gt; | 2(T, U) | boolean | test
+Function&lt;T, R&gt; | 1(T) | R | apply
+BiFunction&lt;T, U, R&gt; | 2(T, U) | R | apply
 UnaryOperator&lt;T&gt; | 1(T) | T | apply
 BinaryOperator&lt;T&gt; | 2(T, T) | T | apply
 
@@ -394,9 +394,9 @@ Functional Interfaces | Parameters | Return Type | Single Abstract Method
 ToDoubleFunction&lt;T&gt; | 1(T) | double | applyAsDouble
 ToIntFunction&lt;T&gt; | 1(T) | int | applyAsInt
 ToLongFunction&lt;T&gt; | 1(T) | long | applyAsLong
-ToDoubleBiFunction<T, U> | 2(T, U) | double | applyAsDouble
-ToIntBiFunction<T, U> | 2(T, U) | int | applyAsInt
-ToLongBiFunction<T, U> | 2(T, U) | long | applyAsLong
+ToDoubleBiFunction&lt;T, U&gt; | 2(T, U) | double | applyAsDouble
+ToIntBiFunction&lt;T, U&gt; | 2(T, U) | int | applyAsInt
+ToLongBiFunction&lt;T, U&gt; | 2(T, U) | long | applyAsLong
 DoubleToIntFunction | 1(double) | int | applyAsInt
 DoubleToLongFunction | 1(double) | long | applyAsInt
 IntToDoubleFunction | 1(int) | double | applyAsDouble
@@ -774,6 +774,40 @@ incrementAndGet() | for numeric classes, atomic pre-increment operation equivale
 getAndIncrement() | For numeric classes, atomic post-increment operation equivalent to value++
 decrementAndGet() | for numeric classes, atomic pre-increment operation equivalent to --value
 getAndDecrement() | For numeric classes, atomic post-increment operation equivalent to value--
+
+The purpose of the concurrent collection classes is to sole common memory consistency errors. A memory consistency error occurs when two threads hae inconsistent views of what should be the same data. Conceptually, we want writes on one thread to be aailable to another thread if it accesses the concurrent collection after the write has ocurred.
+
+Concurrent collection classes
+
+Class Name | Java COllection Framework Interface | Element Ordered? | Sorted? | Blocking?
+------------- | ------------- | ------------- | ------------- | -------------
+ConcurrentHashMap | ConcurrentMap  N | N | N
+ConcurrentLinkedDeque | Deque | Y | N | N
+ConcurrentLikendQueue | Queue | Y | N | N
+ConcurrentSkipListMap | ConcurrentMap, SortedMap, NavigableMap | Y | Y | N
+ConcurrentSkipListSet | SortedSet, NavigableSet | Y | Y | N
+CopyOnWriteArrayList | List | Y | N | N
+CopyOnWriteArraySet | Set | N | N | N
+LinkedBlockingDeque | BlockingQueue, BlockingDeque | Y | N | Y
+LinkedBlockingQueue | BlockingQueue | Y | N | Y
+
+LinkedBlockingDeque and LinkedBlockingQueue are just regular Queue, except that it includes methods that will wait a specific amout of time to complete an operation.
+
+BlockingQueue waiting methods
+
+Method Name | Description
+------------- | -------------
+offer(E e, long timeout, TimeUnit unit) | Adds item to the queue waiting the specified time, returning false if time elapses before space if available
+poll(long timeout, TimeUnit unit) | Retries and removes an item from the queuem waiting the specified time, returning null if the time elapses before the item is available
+
+BlockingDeque waiting methods
+
+Method Name | Description
+------------- | -------------
+offerFirst(E e, long timeout, TimeUnit unit) | Adds an item to the front of the queue, waiting a specified time, returning false if time elapses before space is available
+offerLast(E e, long timeout, TimeUnit unit) | Adds an item to the tail of the queue, waiting a specified time, returning false if time elapses before space is available
+pollFirst(long timeout, TimeUnit unit) | Retrives and removes an item from the front of the queue, waiting the specified time, returning null if the time elapses before the item is available
+pollLast(long timeout, TimeUnit unit) | Retrives and removes an item from the tail of the queue, waiting the specified time, returning null if the time elapses before the item is available
 
 ## Building Database Applications with JDBC
 
