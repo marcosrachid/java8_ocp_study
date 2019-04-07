@@ -728,6 +728,27 @@ boolean cancel() | Attempts to cancel execution of the task
 V get() | Retrieves the result of a task, waiting endlessly if it is not yet available
 V get(long timeout, TimeUnit unit) | Retrieves the result of a task, waiting the specified amout of time. if the result is not ready by the time the timeout is reached, a checked TimeoutException will be thrown
 
+Like ExecutorService, we have a proper interface to schedule tasks called "ScheduledExecutorService". Its instance is also obtained throught "Executors" factory methods.
+
+ScheduledExecutorService methods
+
+Method name | Description
+------------- | -------------
+schedule(Callable<V> callable, long delay, TimeUnit unit) | Creates and executes a Callable task after the given delay.
+schedule(Runnable command, long delay, TimeUnit unit) | Creates and executes a Runnable task after the given delay.
+scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit) | Creates and executes a Runnable task after the given initial delay creating a new task every period alue that passes.
+scheduleAtFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit) | Creates and executes a Runnable task after the given initial delay and subsequently with the given delay between the termination of one execution and the commencement of the next.
+
+Executors methods
+
+Method name | Return Type | Description
+------------- | ------------- | -------------
+newSingleThreadExecutor() | ExecutorService | Creates a single-threaded execuor that uses a single worker thread operating off an unbounded queue. Results are processed sequentially in the order in which they are submitted.
+newSingleThreadScheduledExecutor() | ScheduledExecutorService | Creates a single-threaded executor that can schedule commands to run after a given delay or to execute periodically.
+newCachedThreadPool() | ExecutorService | Creates a thread pool that creates new threads as needed, but will reuse previously constructed threads wen they are available.
+newFixedThreadPool(int nThreads) | ExecutorService | Creates a thread pool that reuses a fixed number of threads operating off a shared unbounded queue.
+newScheduledThreadPool(int nThreads) | ScheduledExecutorService | Creates a thread pool that can schedule commands to run after a given delay or execute periodically.
+
 ## Building Database Applications with JDBC
 
 ## Localization
