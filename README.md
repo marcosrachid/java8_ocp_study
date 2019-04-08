@@ -829,6 +829,29 @@ Synchronized collections are obtained throught Collections classe factory method
 
 "parallelStream()" is the method used to retrieve a parallel stream from a Collection instance.
 
+Parallel streams can improe performance because they rely on the property that many stream operations can be executed independently. This means that a intermediate operation will execute operations on different threads. Ex:
+```
+Arrays.asList("jackal","kangaroo","lemur")
+	.parallelStream()
+	.map(s -> s.toUpperCase())
+	.forEach(System.out::println);
+```
+The order that each thread is executed is never guaranteed.
+
+"reduce()" on parallel stream will guarantee the order the same way as a serial stream.
+
+"reduce()" arguments:
+* The identity must be defined such that for all elements in the stream u, combiner.apply(identity, u) is equal to u;
+* The accumulator operator op must be associative and stateless such that (a op b) op c is equal to a op (b op c) being the accumulator a BiFunction;
+* The combiner operator must also be associatie and stateless and compatible with the identity, such that for all u and t combiner.apply(u, accumulator.apply(identity, t)) os equal to accumulator.apply(u, t) being combiner a BinaryOperator.
+
+"collect()" reduction on parallel stream will not guarantee the same order as the stream.
+
+Requirements for Parallel Reduction with "collect()"
+* The stream is parallel;
+* The parameter of the collect operation has the Collector.Characteristics.CONCURRENT characteristic;
+* Either the stream is unordered, or the collector has the characteristic Collector.Characteristics.UNORDERED.
+
 ## Building Database Applications with JDBC
 
 ## Localization
