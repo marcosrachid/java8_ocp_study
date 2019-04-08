@@ -809,6 +809,26 @@ offerLast(E e, long timeout, TimeUnit unit) | Adds an item to the tail of the qu
 pollFirst(long timeout, TimeUnit unit) | Retrives and removes an item from the front of the queue, waiting the specified time, returning null if the time elapses before the item is available
 pollLast(long timeout, TimeUnit unit) | Retrives and removes an item from the tail of the queue, waiting the specified time, returning null if the time elapses before the item is available
 
+The SkipList classes, ConcurrentSkipListSet and ConcurrentSkipListMap, are concurrent versions of their sorted counterparts, TreeSet and TreeMap, respectively.
+
+CopyOnWriteArrayList and CopyOnWriteArraySet are classes that copy all of their elements to a new underlying structure anytime an element is added, modified, or removed from the collection. Ex:
+```
+List<Integer> list = mew CopyOnWriteArrayList<>(Arrays.asList(4,3,52));
+for (Integer item : list) {
+	System.out.print(item+" ");
+	list.add(9);
+} // 4 5 52
+System.out.println();
+System.out.println("Size: " + list.size()); // Size: 6
+```
+If we had used a regular ArrayList as for referece, a ConcurrentModificationException would have been thrown at runtime.
+
+Synchronized collections are obtained throught Collections classe factory methods.
+
+"parallel()" is the method used to retrieve a parallel stream from a Stream instance.
+
+"parallelStream()" is the method used to retrieve a parallel stream from a Collection instance.
+
 ## Building Database Applications with JDBC
 
 ## Localization
