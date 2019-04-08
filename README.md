@@ -852,6 +852,14 @@ Requirements for Parallel Reduction with "collect()"
 * The parameter of the collect operation has the Collector.Characteristics.CONCURRENT characteristic;
 * Either the stream is unordered, or the collector has the characteristic Collector.Characteristics.UNORDERED.
 
+Multiple thread tasks can be coordinated on concurrent API throught CyclicBarrier and ForkJoinPool classes.
+
+Threading Problems:
+* Deadlock: occurs when two or more thread are blocked forever, each waiting on the other.
+* Starvation: occurs when a single thread is perpetually denied access to a shared resource or lock. The thread is still actie, but it is unable to complete its work as a result of other threads constantly taking the resource that they are trying to access.
+* Livelock: occurs when two or more threads are conceptually blocked foreer, although they are each still active and trying to complete their task. Livelock is a special case of resource staration in which two or more threads actively try to acquire a set of locks, are unable to do so, and restart part of the process.
+* Race Conditions: is an undesirable result that occurs when two tasks, which should be completed sequentially, are completed at the same time.
+
 ## Building Database Applications with JDBC
 
 ## Localization
