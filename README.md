@@ -684,6 +684,55 @@ mkdirs() | Creates the directory named by this path including any nonexistent pa
 getParent() | Returns the abstract pathname of this abstract pathname's parent or null if this pathname does not name parent directory.
 listFiles() | Returns a File[] array denoting the files in the directory.
 
+Differences between streams and readers/writers
+* The stream classes are used for inputting and outputting all types of binary or byte data.
+* The reader and writer classes are used for inputting and outputting only character and string data.
+
+java.io class properties
+* A class with the word InputStream or OutputStream in its name is used for reading or writing binary data, repectively.
+* A class with the word Reader or Writer in its name is used for reading or writing character or string data, respectively.
+* Most, but not all, input classes have a corresponding output class.
+* low-level stream connects directly with the source of the data.
+* high-level stream is built on top of another stream using wrapping.
+* A class with Buffered in its name reads or writes data in groups of bytes or characters and often improves performance in sequential file systems.
+
+java.io.stream classes
+
+Class name | Low/High Level | Description
+------------- | ------------- | -------------
+InputStream | N/A | The abstract class all InputStream classes inherit from
+OutputStream | N/A | The abstract class all OutputStream classes inherit from
+Reader | N/A | The abstract class all Reader classes inherit from
+Writer | N/A | The abstract class all Writer classes inherit from
+FileInputStream | Low | Reads file data as bytes
+FileOutputStream | Low | Writes file data as bytes
+FileReader | Low | Reads file data as characters
+FileWriter | Low | Writes file data as characters
+BufferedReader | High | Reads character data from an existing Reader in a buffered manner, which improes efficiency and performance
+BufferedWriter | High | Writes character data from an existing Writer in a buffered manner, which improes efficiency and performance
+ObjectInputStream | High | Deserializes primitive Jaa data types and graphs of Jaa objects from an existing InputStream
+ObjectOutputStream | High | Serializes primitive Jaa data types and graphs of Jaa objects from an existing OutputStream
+InputStreamReader | High | Reads character data from an existing InputStream
+OutputStreamWriter | High | Writes character data from an existing OutputStream
+PrintStream | High | Writes formatted representations of Java objects to a binary stream
+PrintWriter | High | Writes formatted representations of Java objects to a text-based output stream
+
+streams are Closeable, so they are considered resources for try-with-resources syntax.
+
+When data is written to an OutputStream, the underlying os does not necessarily guarantee that the data will make it to the file immediately, it can be chached in memory in some os. It means if the application terminates unexpectedly, the data would be lost, because it was neer written to the file system. To address this, java provisdes a "flush()" method, which requests that all accumulated data be written immediately to disk.
+
+To serialize and deserialize an object with ObjectInputStream and ObjectOutputStream classes, the class to be serialized/deserialized must implements Serializable.
+
+Thread or Stream classes are not recommended to be Serializable.
+
+Known System streams
+
+Modifier and Type | Class Name | Field and Description
+------------- | ------------- | -------------
+System.err | PrintStream | The "standard" error output stream.
+System.in | InputStream | The "standard" input stream.
+System.out | PrintStream | The "standard" output stream.
+
 ## Java File I/O (NIO.2)
 
 ## Java Concurrency
