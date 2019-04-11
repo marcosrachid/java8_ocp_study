@@ -662,6 +662,28 @@ System.out.println(time); // 11:22
 
 ## Java I/O Fundamentals
 
+File object receives a relative path. Ex: If current directoriy set to "/home/rachid" -> new File("data/anything.txt");
+
+File separator are different for each os, it can be get with 'System.getProperty("file.separator")' or 'java.io.File.separator'.
+
+java.io.File methods
+
+Method name | Description
+------------- | -------------
+exists() | Returns true if the file or directory exists.
+getName() | Returns the name of the file or directory denoted by this path.
+getAbsolutePath() | Returns the absolute pathname string of this path.
+isDirectory() | Returns true if the file denoted by this path is a directory.
+isFile() | Returns true if the file denoted by this path is a file.
+length() | Returns the number of bytes in the file. For performance reasons, the file system may allocate more bytes on disk than the file actually uses.
+lastModified() | Returns the number of millisencods since the epoch when the file was last modified.
+delete() | Deletes the file or directory. If this pathname denotes a directory, then the directory must be empty ir order to be deleted.
+renameTo(File) | Renames the file denoted by this path.
+mkdir() | Creates the directory named by this path.
+mkdirs() | Creates the directory named by this path including any nonexistent parent directories.
+getParent() | Returns the abstract pathname of this abstract pathname's parent or null if this pathname does not name parent directory.
+listFiles() | Returns a File[] array denoting the files in the directory.
+
 ## Java File I/O (NIO.2)
 
 ## Java Concurrency
