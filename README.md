@@ -719,7 +719,7 @@ PrintWriter | High | Writes formatted representations of Java objects to a text-
 
 streams are Closeable, so they are considered resources for try-with-resources syntax.
 
-When data is written to an OutputStream, the underlying os does not necessarily guarantee that the data will make it to the file immediately, it can be chached in memory in some os. It means if the application terminates unexpectedly, the data would be lost, because it was neer written to the file system. To address this, java provisdes a "flush()" method, which requests that all accumulated data be written immediately to disk.
+When data is written to an OutputStream, the underlying os does not necessarily guarantee that the data will make it to the file immediately, it can be chached in memory in some os. It means if the application terminates unexpectedly, the data would be lost, because it was neer written to the file system. To address this, java provides a "flush()" method, which requests that all accumulated data be written immediately to disk.
 
 To serialize and deserialize an object with ObjectInputStream and ObjectOutputStream classes, the class to be serialized/deserialized must implements Serializable.
 
@@ -732,6 +732,35 @@ Modifier and Type | Class Name | Field and Description
 System.err | PrintStream | The "standard" error output stream.
 System.in | InputStream | The "standard" input stream.
 System.out | PrintStream | The "standard" output stream.
+
+Both PrintStream and PrintWriter have the print based methods: "print()", "println()", "format()" and "printf()"
+
+"format()" and "printf()" are similar methods.
+
+We have a class to interact with user called java.io.Console. Example of Console use:
+```
+import java.io.Console;
+public class ConsoleSample {
+	public static void main(String[] args) {
+		Console console = System.console();
+		if (console != null) {
+			String userInput = console.readLine();
+			console.writer().println("You entered the following " + userInput);
+		}
+	}
+}
+```
+Note that it's possible to System not return an instance of console, so it's not guaranteed the instance from "System.console()".
+
+Console's reader() method returns an instance of Reader while Console's writer() method returns an instance of PrintWriter.
+
+The methods "format()", "printf()" and "flush()" also exists on Console and works the same way as PrintWriter.
+
+The method "readLine()" from Console reads a full line input from user and works exactly like BufferedReader's "readLine()" method.
+
+ The method "readPassword()" from Console is similar to the "readLine()" method, except that echoing is disabled. By disabling echoing, the user does not see the text they are typing. Unlike "readLine()" method, the "readPassword()" returns an array of characters instead of a String.
+ 
+ The reason for "readPassword()" returns an array of characters is because String alues are added to a shared memory pool for performance reasons in Java. This means that if a password that a user typed in were to be returned to the process as String, it might be available in the String pool long after the user entered it. That means that the password would be available on String pool of the memory in the application is ever dumped to disk.
 
 ## Java File I/O (NIO.2)
 
