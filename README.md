@@ -1097,7 +1097,7 @@ Ex:
 Source  | Data
 ------------- | -------------
 Take Exam  | <https://education.oracle.com/pt_BR/java-se-8-programmer-ii/pexam_1Z0-809>
-Java Exam Classes(en)  |  <not yeT&gt;
-Java Exam Classes(pt-br)  |  <not yeT&gt;
-Exam Simulation(en)  | <not yeT&gt;
+Java Exam Classes(en)  |  &lt;not yet&gt;
+Java Exam Classes(pt-br)  |  &lt;not yet&gt;
+Exam Simulation(en)  | &lt;not yet&gt;
 Exam Simulation(pt-br)  | <https://www.udemy.com/metodologia-de-certificacao-java-8-ocp-simulados/learn/v4/overview>
