@@ -764,6 +764,33 @@ The method "readLine()" from Console reads a full line input from user and works
 
 ## Java File I/O (NIO.2)
 
+java.nio.file.Path object represents a hierarchical path on the storage system to a file or directory. In this manner, Path is a direct replacement for the legacy java.io.File class, and conceptually it contains many of the same properties.
+
+The simples and most straightforward way to obtain a Path object is using the java.nio.file.Paths factory class, To obtain a reference to a file or directory, you would call the static method "Paths.get(String, String...)". Ex:
+```
+Path p1 = Paths.get("books/law.pdf"); // relative
+
+Path p2 = Paths.get("c:\\employees\\jane.txt"); // absolute
+
+Path p3 = Paths.get("/home/marcos/daemon.log"); // absolute
+```
+or
+```
+Path p1 = Paths.get("books", "law.pdf");
+
+Path p2 = Paths.get("c:", "employees", "jane.txt");
+
+Path p3 = Paths.get("/", "home", "marcos", "daemon.log");
+```
+
+Attention with Path and Paths, OCP might try to trick you, Path is the interface reference and Paths is the factory class.
+
+Alternatively you can use a FileSystem object to retrive a Path object. Like "FileSystems.getDefault().getPath(String, String...)" or "FileSystems.getFileSystem(new URI("any valid uri")).getPath(String, String...)".
+
+Also you can get a Path object from the legacy File instances. Like "new File(String).toPath()".
+
+The backward also works. Like "Paths.get(String, String...).toFile()".
+
 ## Java Concurrency
 
 Runnable is a functional interface that takes no arguments and returns no data with the method "void run()".
