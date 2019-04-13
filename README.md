@@ -769,17 +769,13 @@ java.nio.file.Path object represents a hierarchical path on the storage system t
 The simples and most straightforward way to obtain a Path object is using the java.nio.file.Paths factory class, To obtain a reference to a file or directory, you would call the static method "Paths.get(String, String...)". Ex:
 ```
 Path p1 = Paths.get("books/law.pdf"); // relative
-
 Path p2 = Paths.get("c:\\employees\\jane.txt"); // absolute
-
 Path p3 = Paths.get("/home/marcos/daemon.log"); // absolute
 ```
 or
 ```
 Path p1 = Paths.get("books", "law.pdf");
-
 Path p2 = Paths.get("c:", "employees", "jane.txt");
-
 Path p3 = Paths.get("/", "home", "marcos", "daemon.log");
 ```
 
@@ -790,6 +786,36 @@ Alternatively you can use a FileSystem object to retrive a Path object. Like "Fi
 Also you can get a Path object from the legacy File instances. Like "new File(String).toPath()".
 
 The backward also works. Like "Paths.get(String, String...).toFile()".
+
+NIO.2 also includes helper classes such as java.nio.file.Files, whose primary purpose is to operate on instances of Path objects. Helpers differs from factories in that they are focused on manipulating or creating new objects from existing instances, whereas factory classes are focused primarily on object creation.
+
+Common optional arguments in NIO.2
+
+Enum Value | Usage | Description
+------------- | ------------- | -------------
+NOFOLLOW_LINKS | Test file existing, Read file data, Copy file, Move file | If provided, symbolic links when encountered will not be traversed. Useful for performing operations on symbolic links themselves rather than their target.
+FOLLOW_LINKS | Traverse a directory tree | If proided, symbolic links when encountered will be traversed.
+COPY_ATTRIBUTES | Copy file | If provided, all metadata about a file will be copied with it.
+REPLACE_EXISTING | Copy file, Move file | If proided and the target file exists, it will be replaced; otherwise, if it is not provided, an exception will be thrown if the file already exists.
+ATOMIC_MOVE | The operation is performed in an atomic manner within the file system, ensuring that any process using the file sees only a complete record. Method using it may throw an exception if the feature is unsupported by the file system.
+
+The Path object's "toString()" method is the only method to return String, returning the String value of the path.
+
+The Path object's "getName(int)" returns the component of the Path as a new Path object rather than a String.
+
+The Path object's "getNameCount()" returns the number of names in a Path. Ex:
+```
+Path path = Paths.get("/land/hippo/harry.happy");
+System.out.println("The path Name is " + path); // The path Name is /land/hippo/harry.happy
+
+for (int i = 0; i<path.getNameCount(); i++) {
+	System.out.println("Element " + i + " is: " + path.getName(i));
+} 
+// Element 0 is: land
+// Element 1 is: hippo
+// Element 2 is: harry.happy
+```
+Note that root element / is not included in the list of names. If the Path object represents the root element itself, then the number of names in the Path object returned by getNameCount() will be 0 and the relative path "land/hippo/harry.happy" must return the same as absolute "/land/hippo/harry.happy" path.
 
 ## Java Concurrency
 
