@@ -842,6 +842,17 @@ while((currentParent = currentParent.getParent()) != null) {
 //	Current parent is: armadillo	
 ```
 
+The Path object's "isAbsolute()" returns true if the path of the object references is absolute and false if the path object is relative.
+
+The Path object's "toAbsolutePath()" method converts a relative Path object to an absolute Path object by joining it to the current working directory.
+
+```
+// my working directory is /home/rachid
+Path path = Paths.get("jboss/log/server.log");
+System.out.println("Path is absolute ? " + path.isAbsolute()); // false because jboss/log/server.log is relative
+System.out.println("Absolute Path " + path.toAbsolutePath()); // /home/rachid/jboss/log/server.log
+```
+
 ## Java Concurrency
 
 Runnable is a functional interface that takes no arguments and returns no data with the method "void run()".
