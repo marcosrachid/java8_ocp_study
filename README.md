@@ -817,6 +817,31 @@ for (int i = 0; i<path.getNameCount(); i++) {
 ```
 Note that root element / is not included in the list of names. If the Path object represents the root element itself, then the number of names in the Path object returned by getNameCount() will be 0 and the relative path "land/hippo/harry.happy" must return the same as absolute "/land/hippo/harry.happy" path.
 
+The Path object's "getFileName()" method returns a new Path instance of the filename, which is the farthes element from the root.
+
+The Path object's "getParent()" method returns a Path instance representing the parent path or null if there is no such parent.
+
+The Path object's "getRoot()" method returns the root element for the Path object or null if the Path object is relative.
+
+```
+// Consider path as:
+// A: /zoo/armadillo/shells.txt
+// B: armadillo/shells.txt
+System.out.println("Filename is: " + path.getFileName()); // A is shells.txt and B is shells.txt
+System.out.println("Root is: " + path.getRoot()); // A is / and B is null
+
+Path currentParent = path;
+while((currentParent = currentParent.getParent()) != null) {
+	System.out.println("	Current parent is: " + currentParent);
+}
+// A returns:
+//	Current parent is: /zoo/armadillo
+//	Current parent is: /zoo
+//	Current parent is: /
+// B returns:
+//	Current parent is: armadillo	
+```
+
 ## Java Concurrency
 
 Runnable is a functional interface that takes no arguments and returns no data with the method "void run()".
