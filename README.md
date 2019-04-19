@@ -863,7 +863,7 @@ System.out.println(Subpath from 1 to 3 is: " + path.subpath(1, 3)); // carnivore
 System.out.println(Subpath from 1 to 2 is: " + path.subpath(1, 2)); // carnivore
 ```
 
-The Path object's "relativize(Path)" is for constructing the relative path from one Path object to another. Ex:
+The Path object's "relativize(Path)" method is for constructing the relative path from one Path object to another. Ex:
 ```
 Path p1 = Paths.get("server-2019-04-18.log");
 Path p2 = Paths.get("server-2019-04-17.log");
@@ -871,6 +871,25 @@ System.out.println(p1.relativize(p2)); // ../server-2019-04-17.log
 System.out.println(p2.relativize(p1)); // ../server-2019-04-18.log
 ```
 remember that both paths must be or both relative or both absolute, otherwise it will throw IllegalArgumentException
+
+The Path object's "resolve(Path)" method creates a new Path by joining an existing path to the current path. Ex: Paths.get("/cats/../panther").resolve(Paths.get("food")); // /cats/../panther/food
+
+If an absolute path is offered as input for "resolve(Path)" and the object's Path is relative or a complete different path, then the return would be the input itself.
+
+The Path object's "normalize()" method is used to eliminate the redundancies in the path. Ex:
+```
+Path concrete = Paths.get("E:\\data");
+Path relativized = concrete.relativize(Paths.get("E:\\user\\home")); // ..\user\home
+Path resolved = concrete.resolve(relativized); // E:\data\..\user\home is redundant
+
+System.out.println(resoled.normalize()); // E:\user\home
+```
+
+The Path object's "toRealPath(Path)" method taskes a Path object that may or may not point to an existing file within the file system, and it returns a reference to a real path within the file system. It is similar to "toAbsolutePath()" method in that it can convert a relatie path to an absolute path, except that it also verifies that the file referenced by the path actually exists, and thus it throws a checked IOException at runtime if the file cannot be located.
+
+"toRealPath(Path)" is the only Path method to accept NOFOLLOW_LINKS option.
+
+"toRealPath(Path)" implicitly execute normalize().
 
 ## Java Concurrency
 
