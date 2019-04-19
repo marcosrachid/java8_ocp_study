@@ -853,6 +853,25 @@ System.out.println("Path is absolute ? " + path.isAbsolute()); // false because 
 System.out.println("Absolute Path " + path.toAbsolutePath()); // /home/rachid/jboss/log/server.log
 ```
 
+The method "subpath(int, int) returns a relative subpath of the Path object, referenced by an inclusive start index and an exclusive end index. ex:
+```
+Path path = Paths.get("/mammal/carnivore/raccoon.image");
+System.out.println("Path is: " + path);
+
+System.out.println(Subpath from 0 to 3 is: " + path.subpath(0, 3)); // mammal/carnivore/raccoon.image
+System.out.println(Subpath from 1 to 3 is: " + path.subpath(1, 3)); // carnivore/raccoon.image
+System.out.println(Subpath from 1 to 2 is: " + path.subpath(1, 2)); // carnivore
+```
+
+The Path object's "relativize(Path)" is for constructing the relative path from one Path object to another. Ex:
+```
+Path p1 = Paths.get("server-2019-04-18.log");
+Path p2 = Paths.get("server-2019-04-17.log");
+System.out.println(p1.relativize(p2)); // ../server-2019-04-17.log
+System.out.println(p2.relativize(p1)); // ../server-2019-04-18.log
+```
+remember that both paths must be or both relative or both absolute, otherwise it will throw IllegalArgumentException
+
 ## Java Concurrency
 
 Runnable is a functional interface that takes no arguments and returns no data with the method "void run()".
