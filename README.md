@@ -885,11 +885,11 @@ Path resolved = concrete.resolve(relativized); // E:\data\..\user\home is redund
 System.out.println(resoled.normalize()); // E:\user\home
 ```
 
-The Path object's "toRealPath(Path)" method taskes a Path object that may or may not point to an existing file within the file system, and it returns a reference to a real path within the file system. It is similar to "toAbsolutePath()" method in that it can convert a relatie path to an absolute path, except that it also verifies that the file referenced by the path actually exists, and thus it throws a checked IOException at runtime if the file cannot be located.
+The Path object's "toRealPath()" method taskes a Path object that may or may not point to an existing file within the file system, and it returns a reference to a real path within the file system. It is similar to "toAbsolutePath()" method in that it can convert a relatie path to an absolute path, except that it also verifies that the file referenced by the path actually exists, and thus it throws a checked IOException at runtime if the file cannot be located.
 
-"toRealPath(Path)" is the only Path method to accept NOFOLLOW_LINKS option.
+"toRealPath()" is the only Path method to accept NOFOLLOW_LINKS option.
 
-"toRealPath(Path)" implicitly execute normalize().
+"toRealPath()" implicitly execute normalize().
 
 ## Java Concurrency
 
