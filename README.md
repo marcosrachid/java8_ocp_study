@@ -891,6 +891,18 @@ The Path object's "toRealPath()" method taskes a Path object that may or may not
 
 "toRealPath()" implicitly execute normalize().
 
+java.nio.file.Files class does not relate with java.io.File.
+
+The Files helper's "exists(Path)" method takes a Path object and returns true if, and only if references a file that exists in the system.
+
+The Files helper's "isSameFile(Path, Path) throws IOException" method if two Path objects relate to the same file within fs. The "isSameFile(Path, Path) validates "equals()" between the two path, and only if it's false it will validate if the Path exists on filesystem. It will throw an IOException if either file does not exist.
+
+The Files helper's "createDirectory() throws IOException" and "createDirectories() throws IOException" are respectively the same as "mkdir()" and "mkdirs()" for creating a directory and creating the whole path directories that does not exist.
+
+The Files helper's "copy(Path, Path) throws IOException" method copies a file or directory with the file system. "copy()" method has overloaded versions like "copy(InputStream, Path) throws IOException" and "copy(Path, OutputStream) throws IOException".
+
+The Files helper's "move(Path, Path) throws IOException" method moves or renames a file or directory within the file system. The behaviors can be changed by providing optional values like NOFOLLOW_LINKS, REPLACE_EXISTING or ATOMIC_MOVE. If the file system does not support atomic moves, an AtomicMoveNotSupportedException will be thrown at runtime.
+
 ## Java Concurrency
 
 Runnable is a functional interface that takes no arguments and returns no data with the method "void run()".
