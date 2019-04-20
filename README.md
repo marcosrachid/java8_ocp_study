@@ -903,6 +903,31 @@ The Files helper's "copy(Path, Path) throws IOException" method copies a file or
 
 The Files helper's "move(Path, Path) throws IOException" method moves or renames a file or directory within the file system. The behaviors can be changed by providing optional values like NOFOLLOW_LINKS, REPLACE_EXISTING or ATOMIC_MOVE. If the file system does not support atomic moves, an AtomicMoveNotSupportedException will be thrown at runtime.
 
+The Files helper's "delete(Path) throws IOException" and "deleteIfExists(Path) methods are both for deleting a file within file system with unique difference that "deleteIfExists()" does not throw exception in case of a non-existent file.
+
+The Files helper's "newBufferedReader(Path, Charset) throws IOException" and "newBufferedWriter(Path, Charset) throws IOException" methods are respectively factories for creating a BufferedReader and BufferedWriter objects.
+
+The Files helper's "readAllLines(Path) throws IOException" method read all of the lines of a text file and returns the results as an ordered List of String values.
+
+Comparison fo legacy File and NIO.2 methods
+
+Legacy Method | NIO.2 Method
+------------- | -------------
+file.exists() | Files.exists(Path)
+file.getName() | path.getFileName()
+file.getAbsolutePath() | path.toAbsolutePath()
+file.isDirectory() | Files.isDirectory(Path)
+file.isFile() | Files.isRegularFile(Path)
+file.isHidden() | Files.isHidden(Path)
+file.length() | Files.size(Path)
+file.lastModified() | Files.getLastModifiedTime(Path)
+file.setLastModified(long) | Files.setLastModifiedTime(Path, FileTime)
+file.delete() | Files.delete(Path)
+file.renameTo(File) | Files.move(Path, Path)
+file.mkdir() | Files.createDirectory(Path)
+file.mkdirs() | Files.createDirectories(Path)
+file.listFiles() | Files.list(Path)
+
 ## Java Concurrency
 
 Runnable is a functional interface that takes no arguments and returns no data with the method "void run()".
