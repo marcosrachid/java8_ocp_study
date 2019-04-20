@@ -909,6 +909,12 @@ The Files helper's "newBufferedReader(Path, Charset) throws IOException" and "ne
 
 The Files helper's "readAllLines(Path) throws IOException" method read all of the lines of a text file and returns the results as an ordered List of String values.
 
+The Files helper's "isDirectory(Path)", "isRegularFile(Path)" and "isSymbolicLink(Path)" methods for reading common attributes. They do not throws checked exceptions.
+
+The Files helper's "isHidden(Path)" method for checking file or directory visibility within the file system. On Linux ad Mac-based systems, this is often denoted by file or directory entries that begin with a period(.), while Windows-based systems this requires the hidden attribute to be set.
+
+The Files helper's "isReadable()" and "isExecutable()" methods to check file accessibility.
+
 Comparison fo legacy File and NIO.2 methods
 
 Legacy Method | NIO.2 Method
