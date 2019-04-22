@@ -938,6 +938,34 @@ file.mkdir() | Files.createDirectory(Path)
 file.mkdirs() | Files.createDirectories(Path)
 file.listFiles() | Files.list(Path)
 
+Attribute classes are classes that represents a metadata attribute from files.
+
+Views are access classes for reading and updating metadata attributes from files.
+
+The attributes and view classes
+
+Attribute Class | View Class | Description
+------------- | ------------- | -------------
+BasicFileAttributes | BasicFileAttributeView | Basic set of attributes supported by all file systems
+DosFileAttributes | DosFileAttributeView | Attributes supported by DOS/Windows-based systems
+PosixFileAttributes | PosixFileAttributeView | Attributes supported by POSIX systems, such as UNIX, Linux, Mac and so on
+
+Reading Attributes:
+```
+BasicFileAttributes data = Files.readAtributes(Paths.get("server.log"), BasicFileAttributes.class);
+System.out.println("Is path a directory? " + data.isDirectory());
+System.out.println("Is path a symbolic link? " + data.isSymbolicLink());
+System.out.println("Size: " + data.size());
+```
+
+Updating Attributes:
+```
+BasicFileAttributeView view = Files.getFileAttributeView(Paths.get("application.properties"), BasicFileAttributeView.class);
+BasicFileAttributes data = view.readAttributes();
+FileTime lastModifiedTime = FileTime.fromMillis(data.lastModifiedTime().toMillis()+10_000);
+view.setTimes(lastModifiedTime, null, null);
+```
+
 ## Java Concurrency
 
 Runnable is a functional interface that takes no arguments and returns no data with the method "void run()".
