@@ -915,6 +915,10 @@ The Files helper's "isHidden(Path)" method for checking file or directory visibi
 
 The Files helper's "isReadable()" and "isExecutable()" methods to check file accessibility.
 
+The Files helper's "getLastModifiedTime(Path) throws IOException" and "setLastModifiedTime(Path, FileTime) throws IOException" methods are respectively a method which returns a FileTime object (with the possibility to execute "toMillis()" method to get epoch time) and a method for updating the last-modified date/time. Both of these methods have the ability to throw a checked IOException when the file is accessed or modified.
+
+The Files helper's "getOwner(Path) throws IOException" and "setOwner(Path, UserPrincipal) throws IOException" methods are respectively a method which returns an instance of UserPrincipal that represent the owner of the file within the file system and a method for updating file owner. Not that the operating system may intervene when you try to modifify the owner of a file and block the operation. Bothe "getOwner()" and "setOwner()" can throw the checked exception IOException in case of any issue accessing or modifying the file.
+
 Comparison fo legacy File and NIO.2 methods
 
 Legacy Method | NIO.2 Method
