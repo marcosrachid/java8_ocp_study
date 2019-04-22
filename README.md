@@ -919,6 +919,50 @@ The Files helper's "getLastModifiedTime(Path) throws IOException" and "setLastMo
 
 The Files helper's "getOwner(Path) throws IOException" and "setOwner(Path, UserPrincipal) throws IOException" methods are respectively a method which returns an instance of UserPrincipal that represent the owner of the file within the file system and a method for updating file owner. Not that the operating system may intervene when you try to modifify the owner of a file and block the operation. Bothe "getOwner()" and "setOwner()" can throw the checked exception IOException in case of any issue accessing or modifying the file.
 
+Depth-First Search x Breadth-First Search Strategies
+* Depth-First: traverse the structure from the root to an arbitrary leaf and then navigates back up toward the root, traversing fully down any path it skipped along the way.
+* Breadth-First: starts at the root and processes all elements of each particular depth, or distance from the root, before proceeding to next depth level.
+
+On exam you need only to know that the Stream API ses depth-first searching with a default maximum depth of Integer.MAX_VALUE.
+
+The Files helper's "walk(Path) throws IOException" method returns a Stream<Path> object that traverses the directory in a depth-first, lazy manner. By lazy, we mean the set of elements is built and read while the directory is being traversed.
+
+"walk(Path)" has an overloaded method to limit the depth range that is "walk(Path, int)".
+```
+try {
+	Files.walk(Paths.get("/application")
+		.filter(p -> p.toString().endsFWith(".java"))
+		.forEach(System.out::println);
+} catch(IOException e) {}
+```
+
+The Files helper's "find(Path, int, BiPredicate) throws Exception" method behaves in a similar manner as "Files.walk()" method, except that it requires the depth value to be explicitly set along with a BiPredicate to filter the data. Like "walk()", "find()" also supports the FOLLOW_LINK.
+```
+try {
+	Stream<Path> stream = Files.find(Paths.get("/application"), 10, (p, a) -> p.toString().endsWith(".java") && a.lastModifiedTime().toMillis()>1420070400000);
+	stream.forEach(System.out::println);
+} catch(Exception e) {}
+```
+
+The Files helper's "list(Path) throws IOException" method is similar to an execution of "walk(path, 1)", delivering the first depth files and directories for you.
+```
+try {
+	Files.list(Paths.get("/application")
+		.filter(p -> !Files.isDirectory(p)
+		.map(p -> p.toAbsolutePath())
+		.forEach(System.out::println);
+} catch(IOException e) {}
+```
+
+The Files helper's "lines(Path) throws IOException" and "readAllLines(Path) throws IOException" methods are methods for printing file contents. "readAllLines()" will return a Collection of String and "lines()" will return a Stream of String.
+
+For exam you need to remember which one returns Stream and which one returns a Collection.
+```
+try {
+	Files.lines(Paths.get("server.log").forEach(System.out::println); // it would work the same way if you change lines() for readAllLines()
+} catch(IOException e) {}
+```
+
 Comparison fo legacy File and NIO.2 methods
 
 Legacy Method | NIO.2 Method
