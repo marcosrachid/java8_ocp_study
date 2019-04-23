@@ -1208,6 +1208,25 @@ Threading Problems:
 
 ## Building Database Applications with JDBC
 
+Key JDBC interfaces:
+* Driver: Knows how to get a connection to the database;
+* Connection: Knows how to communicate with the database;
+* Statement: Knows how to run SQL;
+* ResultSet: Knows what was returned by a SELECT query.
+
+JDBC URL separates in three parts:
+* Protocol: jdbc is a mandatory part;
+* Vendor Name: mysql or derby or postgres or any other vendor name. It's not necessary memorize for OCP. Vendor name is a mandatory part;
+* Database specific connection details: Database has the connection necessary informations, divided in three parts: hostname, port and database name, being the last the only mandatory part.
+
+```
+jdbc:mysql://localhost:3306/class?showSQL=true - Valid
+jdbc:mysql://localhost:3306/class - Valid
+jdbc:mysql://localhost/class - Valid
+jdbc:mysql:class - Valid
+jdbc:mysql://localhost - Invalid
+```
+
 ## Localization
 
 Get current default locale with "Locale.getDefault()".
