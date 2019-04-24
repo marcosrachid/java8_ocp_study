@@ -1227,6 +1227,38 @@ jdbc:mysql:class - Valid
 jdbc:mysql://localhost - Invalid
 ```
 
+There are two ways to get a connection on an application: with a Datasource or DriverManager. The second option is the only one covered on the exam, although on any real world application, it's recommended to use Datasource.
+```
+public static void main(String[] args) throws SQLException {
+	Connection conn = DriverManager.getConnection("jdbc:mysql:class"); // jdbc url
+	System.out.println(conn);
+}
+```
+
+DriverManager's "getConnection()" will throw an exception in case of not finding a suitable driver for the defined url.
+
+DriverManager's "getConnection()" has an overloaded method that takes username and password. "getConnection(url, username, password) throws SQLException".
+
+On JDBC 3.0 Driver you are going to see a "Class.forName(url) throws ClassNotFoundException" before the "getConnection()" declaration. It's mandatory for older versions of JDBC. Ex:
+```
+public static void main(String[] args) throws Exception {
+	Class.forName("com.mysql.Driver"); // package and class of driver on a String way
+	Connection conn = DriverManager.getConnection("jdbc:mysql:class"); // jdbc url
+	System.out.println(conn);
+}
+```
+
+In case of the url from "Class.forName()" is invalid, it will throw and ClassNotFoundException.
+
+JDBC 3.0 vs JDBC 4.0
+
+Description | 3.0 | 4.0
+------------- | ------------- | -------------
+Required to contain java.sql.Driver | N | Y
+Java will use java.sql.Driver file if present | Y | Y
+Required to use Class.forName | Y | N
+Allowed to use Class.forName | Y | Y
+
 ## Localization
 
 Get current default locale with "Locale.getDefault()".
