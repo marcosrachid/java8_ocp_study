@@ -1318,6 +1318,66 @@ stmt.execute() | boolean | true | false
 stmt.executeQuery() | ResultSet | The rows and columns Returned | n/a
 stmt.executeUpdate() | int | n/a | Number of rows added/changed/removed
 
+To get a value from ResultSet, most of the time(forward-only) you will have to loop it to the value. Ex:
+```
+ResultSet rs = stmt.executeQuery("select id, name from games");
+while(rs.next()) {
+	int id = rs.getInt("id");
+	String name = rs.getString("name");
+}
+```
+
+Without the rs.next() the result set can't get any value and will throw a SQLException if you try to get any value from column.
+
+You also can use the numeric order of the columns to get the value, but always remember that it starts with 1, if you use 0, it will throw a SQLException. Ex:
+```
+ResultSet rs = stmt.executeQuery("select id, name from games");
+while(rs.next()) {
+	int id = rs.getInt(1);
+	String name = rs.getString(2);
+}
+```
+
+The exam will try to fool you by using inexistent ResultSet get methods, like "getLocalDate()", but there is no get method that returns new Java API classes, only native and "java.sql" types. Althought "java.sql" date/time based types have methods that returns "java.time" type classes of its instance.
+
+JDBC date and time types
+
+JDBC Type | Java 8 Type | Method | Contains
+------------- | ------------- | ------------- | -------------
+java.sql.Date | java.time.LocalDate | toLocalDate() | Date only
+java.sql.Time | java.time.LocalTime | toLocalTime() | Time only
+java.sql.TimeStamp | java.time.LocalDateTime | toLocalDateTime() | Both date and time
+
+A scrollable ResultSet allows you to position the cursor at any row. It is necessary a ResultSet.TYPE_SCROLL_INSENSITIVE or ResultSet.TYPE_SCROLL_SENSITIVE for this. Ex:
+```
+Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+ResultSet rs = stmt.executeQuery("select id, name from games");
+rs.afterLast();
+System.out.println(rs.previous()); // true
+System.out.println(rs.getInt(1)); // 52
+System.out.println(rs.previous()); // true
+System.out.println(rs.getInt(1)); // 51
+System.out.println(rs.last()); // true, it would return false if the ResultSet were empty
+System.out.println(rs.getInt(1)); // 52
+System.out.println(rs.first()); // true, it would return false if the ResultSet were empty
+System.out.println(rs.getInt(1)); // 1
+rs.beforeFirst();
+System.out.println(rs.getInt(1)); // throws SQLException, it would do the same if you try to get a value after rs.afterLast()
+```
+
+It also is possible to get a specific line from ResultSet by the use of method "absolute()". Ex:
+```
+Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+ResultSet rs = stmt.executeQuery("select id, name from games");
+System.out.println(rs.absolute(52)); // true
+System.out.println(rs.getInt(1)); // 52
+System.out.println(rs.absolute(0)); // false, index starts from 1
+System.out.println(rs.absolute(5)); // true
+System.out.println(rs.getInt(1)); // 5
+System.out.println(rs.absolute(-2)); // true
+System.out.println(rs.getInt(1)); // 51, absolute(-2) is the same as last but one
+```
+
 ## Localization
 
 Get current default locale with "Locale.getDefault()".
