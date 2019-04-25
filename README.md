@@ -7,7 +7,7 @@ Tips for OCP exam
 1. [Java Class Design](#Java-Class-Design)
 2. [Advanced Java Class Design](#Advanced-Java-Class-Design)
 3. [Generics and Collections](#Generics-and-Collections)
-4. [Lambda Built-in Functional Interfaces & Java Stream](#Lambda-Built-in-Functional-Interfaces-&-Java-Stream)
+4. [Lambda Built-in Functional Interfaces and Java Stream](#Lambda-Built-in-Functional-Interfaces-and-Java-Stream)
 5. [Exceptions and Assertions](#Exceptions-and-Assertions)
 6. [Use Java SE 8 Date/Time API](#Use-Java-SE-8-Date/Time-API)
 7. [Java I/O Fundamentals](#Java-I/O-Fundamentals)
@@ -296,7 +296,7 @@ Methods from collection that uses lambda:
 * replaceAll(UnaryOperator<E> o)
 * forEach(Consumer<E> c)
 
-## Lambda Built-in Functional Interfaces & Java Stream
+## Lambda Built-in Functional Interfaces and Java Stream
 
 Built-in Functional Interfaces
 
