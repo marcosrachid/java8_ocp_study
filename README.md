@@ -1408,6 +1408,26 @@ Connection, Statement and ResultSet are all Closeable, which means that they can
 * Closing a Connection also closes the Statement and ResultSet;
 * Closing a Statement also closes the ResultSet.
 
+SQLException has three main methods:
+* getMessage(): Returns a human-readable message as to what went wrong;
+* getSQLState(): Returns a code as to what wen wrong;
+* getErrorCode(): Returns a database-specific code.
+
+Example:
+```
+String url = " jdbc:derby:zoo";
+try (Connection conn = DriverManager.getConnection(url);
+	Statement stmt = conn.createStatement();
+	ResultSet rs = stmt.executeQuery("select not_a_column from games")) {
+	while (rs.next())
+		System.out.println(rs.getString(1));
+} catch (SQLException e) {
+	System.out.println(e.getMessage()); // ERROR: column "not_a_column" does not exist
+	System.out.println(e.getSQLState()); // 42708
+	System.out.println(e.getErrorCode()); // 0
+}
+```
+
 ## Localization
 
 Get current default locale with "Locale.getDefault()".
