@@ -1378,6 +1378,36 @@ System.out.println(rs.absolute(-2)); // true
 System.out.println(rs.getInt(1)); // 51, absolute(-2) is the same as last but one
 ```
 
+You can also scroll referenced by the current position using "relative()". Ex:
+```
+Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+ResultSet rs = stmt.executeQuery("select id, name from games");
+System.out.println(rs.next()); // true
+System.out.println(rs.getInt(1)); // 1
+System.out.println(rs.relative(2)); // true
+System.out.println(rs.getInt(1)); // 3
+System.out.println(rs.relative(-1)); // true
+System.out.println(rs.getInt(1)); // 2
+System.out.println(rs.relative(-4)); // false
+```
+
+Navigating a ResultSet
+
+Method | Description | Requires Scrollable ResultSet
+------------- | ------------- | -------------
+boolean absolute(int) | Move cursor to the specified row number | Y
+void afterLast() | Move cursor to a location immediately after the last row | Y
+void beforeFirst() | Move cursor to a location immediately before the first row | Y
+boolean first() | Move cursor to the first row | Y
+boolean last() | Move cursor to the last row | Y
+boolean next() | Move cursor one row forward | N
+boolean preious() | Move cursor one row backward | Y
+boolean relative(int) | Move cursor forward or backward the specified number of rows | Y
+
+Connection, Statement and ResultSet are all Closeable, which means that they can be closed using try-with-resources. Closing a JDBC resource should close any resource that it created first. For ex:
+* Closing a Connection also closes the Statement and ResultSet;
+* Closing a Statement also closes the ResultSet.
+
 ## Localization
 
 Get current default locale with "Locale.getDefault()".
