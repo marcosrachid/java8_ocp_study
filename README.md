@@ -7,7 +7,7 @@ Tips for OCP exam
 1. [Java Class Design](#Java-Class-Design)
 2. [Advanced Java Class Design](#Advanced-Java-Class-Design)
 3. [Generics and Collections](#Generics-and-Collections)
-4. [Lambda Built-in Functional Interfaces](#Lambda-Built-in-Functional-Interfaces)
+4. [Lambda Built-in Functional Interfaces & Java Stream](#Lambda-Built-in-Functional-Interfaces-&-Java-Stream)
 5. [Exceptions and Assertions](#Exceptions-and-Assertions)
 6. [Use Java SE 8 Date/Time API](#Use-Java-SE-8-Date/Time-API)
 7. [Java I/O Fundamentals](#Java-I/O-Fundamentals)
@@ -221,7 +221,7 @@ public class A {
 
 Generics allow you to write and use parameterized types, for example you can specify that you want a ArrayList of String objects. ex:
 ```
-public class A&lt;T&gt; {
+public class A<T> {
 	T obj;
 }
 ```
@@ -229,7 +229,7 @@ public class A&lt;T&gt; {
 It's possible to use generic to a specific method. ex:
 ```
 ...
-	public static &lt;T&gt; void call(T t) {}
+	public static <T> void call(T t) {}
 ...
 ```
 calling:
@@ -296,7 +296,7 @@ Methods from collection that uses lambda:
 * replaceAll(UnaryOperator<E> o)
 * forEach(Consumer<E> c)
 
-## Lambda Built-in Functional Interfaces
+## Lambda Built-in Functional Interfaces & Java Stream
 
 Built-in Functional Interfaces
 
