@@ -1273,6 +1273,51 @@ Java will use java.sql.Driver file if present | Y | Y
 Required to use Class.forName | Y | N
 Allowed to use Class.forName | Y | Y
 
+Statement's are created using an instance of Connection with method "createStatement()". An overloaded method of "createStatement()" exists that defines the ResultSet type on the first argument and ResultSet concurrency mode.
+
+ResultSet type options
+
+ResultSet Type | Can go backward | See latest data from database table | Supported by most drivers
+------------- | ------------- | ------------- | -------------
+ResultSet.TYPE_FORWARD_ONLY | N | N | Y
+ResultSet.TYPE_SCROLL_INSENSITIVE | Y | N | Y
+ResultSet.TYPE_SCROLL_SENSITIVE | Y | Y | N
+
+ResultSet.TYPE_FORWARD_ONLY is the default. You can go through the data once in the order in which it was retrieved.
+
+ResultSet.TYPE_SCROLL_INSENSITIVE you can go through the data in any order, go forward or backward or even in a specific spot.
+
+ResultSet.TYPE_SCROLL_SENSITIVE is almost the same as ResultSet.TYPE_SCROLL_INSENSITIVE, with the difference that it guarantees data synchronization with database while you are scrolling, but it isn't well supported by drivers and the exam will only need you to know it exists.
+
+If the driver does not support the selected type, it will automatically downgrade to an existing type
+
+ResultSet concurrency mode options
+
+ResultSet Concurrency Option | Can read data | Can update data | Supported by all drivers
+------------- | ------------- | ------------- | -------------
+ResultSet.CONCUR_READ_ONLY | Y | Y | N
+ResultSet.CONCUR_UPDATABLE | Y | N | Y
+
+If the driver does not support the selected concurrency option, it will automatically downgrade to an existing concurrency option.
+
+About executing statements on the exam, the question will tell you how many rows are affected if you need to know.
+
+SQL runnable by execute method
+
+Method | DELETE | INSERT | SELECT | UPDATE
+------------- | ------------- | ------------- | ------------- | -------------
+stmt.execute() | Y | Y | Y | Y
+stmt.executeQuery() | N | N | Y | N
+stmt.executeUpdate() | Y | Y | N | Y
+
+Return types of executes
+
+Method | Return Type | What is Returned for SELECT | What is Returned for DELETE/INSERT/UPDATE
+------------- | ------------- | ------------- | -------------
+stmt.execute() | boolean | true | false
+stmt.executeQuery() | ResultSet | The rows and columns Returned | n/a
+stmt.executeUpdate() | int | n/a | Number of rows added/changed/removed
+
 ## Localization
 
 Get current default locale with "Locale.getDefault()".
